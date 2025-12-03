@@ -33,3 +33,11 @@ jobs:
       npm_token: ${{ secrets.SDK_NPM_AUTH_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
 
+  post-generation-fixes:
+    name: Post-Generation Fixes
+    needs: generate
+    if: always() && needs.generate.outputs.branch_name != ''
+    uses: ./.github/workflows/fix-manifest.yaml
+    with:
+      branch_name: ${{ needs.generate.outputs.branch_name }}
+      base_branch: main
