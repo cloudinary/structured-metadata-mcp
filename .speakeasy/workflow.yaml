@@ -10,6 +10,7 @@ sources:
             - location: https://cloudinary.github.io/api-schemas/overlays/mcp-disabled.yml
             - location: https://cloudinary.github.io/api-schemas/overlays/remove-mcp-description.yml
             - location: https://cloudinary.github.io/api-schemas/overlays/signature-optional-overlay.yml
+            - location: https://cloudinary.github.io/api-schemas/structured-metadata/overlays/metadata_rules_overlay.yml
         registry:
             location: registry.speakeasyapi.dev/cloudinary/cloudinary/cloudinary-structured-metadata-mcp-oas
 targets:
