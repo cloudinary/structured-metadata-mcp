@@ -3,32 +3,8 @@
  */
 
 import * as z from "zod";
-
-/**
- * The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema.
- */
-export type MetadataRuleResponseCondition = {};
-
-export const MetadataRuleResponseCondition$zodSchema: z.ZodType<
-  MetadataRuleResponseCondition,
-  z.ZodTypeDef,
-  unknown
-> = z.object({}).describe(
-  "The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema.",
-);
-
-/**
- * The result to apply when the condition is met, should adhere to the metadata rule result schema.
- */
-export type MetadataRuleResponseResult = {};
-
-export const MetadataRuleResponseResult$zodSchema: z.ZodType<
-  MetadataRuleResponseResult,
-  z.ZodTypeDef,
-  unknown
-> = z.object({}).describe(
-  "The result to apply when the condition is met, should adhere to the metadata rule result schema.",
-);
+import { ActionExp, ActionExp$zodSchema } from "./actionexp.js";
+import { SmdCondition, SmdCondition$zodSchema } from "./smdcondition.js";
 
 /**
  * The state of the rule.
@@ -45,8 +21,8 @@ export type MetadataRuleResponseState = z.infer<
 export type MetadataRuleResponse = {
   metadata_field_id?: string | undefined;
   name?: string | undefined;
-  condition?: MetadataRuleResponseCondition | undefined;
-  result?: MetadataRuleResponseResult | undefined;
+  condition?: SmdCondition | undefined;
+  result?: ActionExp | undefined;
   state?: MetadataRuleResponseState | undefined;
   position?: number | undefined;
   external_id?: string | undefined;
@@ -58,12 +34,12 @@ export const MetadataRuleResponse$zodSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  condition: z.lazy(() => MetadataRuleResponseCondition$zodSchema).optional(),
+  condition: SmdCondition$zodSchema.optional(),
   condition_signature: z.string().optional(),
   external_id: z.string().optional(),
   metadata_field_id: z.string().optional(),
   name: z.string().optional(),
   position: z.number().int().optional(),
-  result: z.lazy(() => MetadataRuleResponseResult$zodSchema).optional(),
+  result: ActionExp$zodSchema.optional(),
   state: MetadataRuleResponseState$zodSchema.optional(),
 });

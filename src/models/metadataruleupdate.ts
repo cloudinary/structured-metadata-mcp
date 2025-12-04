@@ -3,32 +3,8 @@
  */
 
 import * as z from "zod";
-
-/**
- * The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema.
- */
-export type MetadataRuleUpdateCondition = {};
-
-export const MetadataRuleUpdateCondition$zodSchema: z.ZodType<
-  MetadataRuleUpdateCondition,
-  z.ZodTypeDef,
-  unknown
-> = z.object({}).describe(
-  "The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema.",
-);
-
-/**
- * The result to apply when the condition is met, should adhere to the metadata rule result schema.
- */
-export type MetadataRuleUpdateResult = {};
-
-export const MetadataRuleUpdateResult$zodSchema: z.ZodType<
-  MetadataRuleUpdateResult,
-  z.ZodTypeDef,
-  unknown
-> = z.object({}).describe(
-  "The result to apply when the condition is met, should adhere to the metadata rule result schema.",
-);
+import { ActionExp, ActionExp$zodSchema } from "./actionexp.js";
+import { SmdCondition, SmdCondition$zodSchema } from "./smdcondition.js";
 
 /**
  * The state of the rule.
@@ -45,8 +21,8 @@ export type MetadataRuleUpdateState = z.infer<
 export type MetadataRuleUpdate = {
   metadata_field_id?: string | undefined;
   name?: string | undefined;
-  condition?: MetadataRuleUpdateCondition | undefined;
-  result?: MetadataRuleUpdateResult | undefined;
+  condition?: SmdCondition | undefined;
+  result?: ActionExp | undefined;
   state?: MetadataRuleUpdateState | undefined;
   position?: number | undefined;
 };
@@ -56,10 +32,10 @@ export const MetadataRuleUpdate$zodSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  condition: z.lazy(() => MetadataRuleUpdateCondition$zodSchema).optional(),
+  condition: SmdCondition$zodSchema.optional(),
   metadata_field_id: z.string().optional(),
   name: z.string().optional(),
   position: z.number().int().optional(),
-  result: z.lazy(() => MetadataRuleUpdateResult$zodSchema).optional(),
+  result: ActionExp$zodSchema.optional(),
   state: MetadataRuleUpdateState$zodSchema.optional(),
 });
