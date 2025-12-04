@@ -1,0 +1,49 @@
+name: Post-Generation Fixes
+
+on:
+  workflow_run:
+    workflows: ["Generate"]
+    types:
+      - completed
+
+jobs:
+  fix-manifest:
+    name: Fix Manifest
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Find Speakeasy branch and fix manifest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Find the most recent speakeasy PR branch
+          BRANCH=$(gh api repos/${{ github.repository }}/branches \
+            --jq '.[] | select(.name | startswith("speakeasy-sdk-regen")) | .name' \
+            | head -n 1)
+
+          if [ -z "$BRANCH" ]; then
+            echo "No speakeasy branch found, skipping fix"
+            exit 0
+          fi
+
+          echo "Found branch: $BRANCH"
+          echo "BRANCH_NAME=$BRANCH" >> $GITHUB_ENV
+
+          # Checkout the branch
+          git fetch origin "$BRANCH"
+          git checkout "$BRANCH"
+
+      - name: Fix manifest.json
+        if: env.BRANCH_NAME != ''
+        uses: ./.github/actions/fix-manifest
+        with:
+          branch_name: ${{ env.BRANCH_NAME }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
