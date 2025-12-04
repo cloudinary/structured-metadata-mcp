@@ -1,0 +1,67 @@
+name: Fix Manifest
+description: Restores manifest.json from base branch, preserving only version changes
+
+inputs:
+  branch_name:
+    description: The branch name to fix manifest.json on
+    required: true
+  base_branch:
+    description: The base branch to restore manifest.json from
+    required: false
+    default: main
+  github_token:
+    description: GitHub token for pushing changes
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Fix manifest.json
+      shell: bash
+      run: |
+        set -e
+
+        echo "Fixing manifest.json to preserve only version changes..."
+
+        if [ ! -f manifest.json ]; then
+          echo "Error: manifest.json not found"
+          exit 1
+        fi
+
+        NEW_VERSION=$(jq -r '.version' manifest.json)
+        if [ -z "$NEW_VERSION" ] || [ "$NEW_VERSION" = "null" ]; then
+          echo "Error: Could not extract version from manifest.json"
+          exit 1
+        fi
+        echo "New version: $NEW_VERSION"
+
+        if ! git show "origin/${{ inputs.base_branch }}:manifest.json" > /tmp/base_manifest.json; then
+          echo "Error: Could not restore manifest.json from origin/${{ inputs.base_branch }}"
+          exit 1
+        fi
+        echo "Restored manifest.json from ${{ inputs.base_branch }}"
+
+        if ! jq --arg version "$NEW_VERSION" '.version = $version' /tmp/base_manifest.json > manifest.json; then
+          echo "Error: Failed to update version in manifest.json"
+          exit 1
+        fi
+
+        echo "Successfully updated manifest.json with version: $NEW_VERSION"
+
+    - name: Commit and push if changed
+      shell: bash
+      run: |
+        set -e
+
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        if git diff --quiet manifest.json; then
+          echo "No changes to manifest.json, nothing to commit"
+        else
+          echo "Changes detected in manifest.json, committing..."
+          git add manifest.json
+          git commit -m "fix: revert manifest.json changes except version" -m "Automatically reverted unwanted manifest.json changes while preserving version updates from SDK generation."
+          git push origin "${{ inputs.branch_name }}"
+          echo "Successfully pushed manifest.json fix"
+        fi
