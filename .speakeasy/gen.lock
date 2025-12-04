@@ -1,12 +1,13 @@
 lockVersion: 2.0.0
 id: cce51212-9f48-488d-9ded-b8a6fac39957
 management:
-  docChecksum: eab526d8b254c5b20caf9fc470128640
+  docChecksum: 98307fd9bf6fa2d1805a37d8c688f6b5
   docVersion: 0.3.5
-  speakeasyVersion: 1.665.0
-  generationVersion: 2.767.2
-  releaseVersion: 0.3.0
-  configChecksum: 521f4df0f08efc06cbf6de5f9a101d90
+  speakeasyVersion: 1.668.0
+  generationVersion: 2.770.0
+  releaseVersion: 0.3.1
+  configChecksum: 7e79fb67d82a2fe008e4815b2f233c43
+  repoURL: https://github.com/cloudinary/structured-metadata-mcp.git
   published: true
 features:
   mcp-typescript:
@@ -95,7 +96,9 @@ generatedFiles:
   - src/mcp-server/tools/metadataRulesDeleteMetadataRule.ts
   - src/mcp-server/tools/metadataRulesListMetadataRules.ts
   - src/mcp-server/tools/metadataRulesUpdateMetadataRule.ts
+  - src/models/actionexp.ts
   - src/models/apierror.ts
+  - src/models/condexp.ts
   - src/models/createmetadatafieldop.ts
   - src/models/createmetadataruleop.ts
   - src/models/deletemetadatafielddatasourceop.ts
@@ -107,12 +110,14 @@ generatedFiles:
   - src/models/getmetadatafieldop.ts
   - src/models/listmetadatafieldsop.ts
   - src/models/listmetadatarulesop.ts
+  - src/models/logicexpunion.ts
   - src/models/metadatafield.ts
   - src/models/metadatafielddatasourcevalue.ts
   - src/models/metadatafielddatasourcevaluesarray.ts
   - src/models/metadatarulecreate.ts
   - src/models/metadataruleresponse.ts
   - src/models/metadataruleupdate.ts
+  - src/models/optionsexp.ts
   - src/models/reordermetadatafieldop.ts
   - src/models/reordermetadatafieldsop.ts
   - src/models/restoremetadatafielddatasourceop.ts
@@ -120,9 +125,11 @@ generatedFiles:
   - src/models/searchdatasourceinmdfieldop.ts
   - src/models/searchmetadatafielddatasourceop.ts
   - src/models/security.ts
+  - src/models/smdcondition.ts
   - src/models/updatemetadatafielddatasourceop.ts
   - src/models/updatemetadatafieldop.ts
   - src/models/updatemetadataruleop.ts
+  - src/models/valueexp.ts
   - src/types/async.ts
   - src/types/blobs.ts
   - src/types/enums.ts
@@ -131,3 +138,4 @@ generatedFiles:
   - src/types/streams.ts
   - tsconfig.json
 examplesVersion: 1.0.2
+releaseNotes: "## Mcp-typescript SDK Changes:\n* `CloudinarySMD.metadata_rules.createMetadataRule()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `CloudinarySMD.metadata_rules.listMetadataRules()`:  `response.metadata_rules.[]` **Changed** **Breaking** :warning:\n* `CloudinarySMD.metadata_rules.updateMetadataRule()`: \n  *  `request.metadata_rule_update` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n"
