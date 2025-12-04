@@ -62,32 +62,35 @@ export const MetadataFieldState$zodSchema = z.enum([
 
 export type MetadataFieldState = z.infer<typeof MetadataFieldState$zodSchema>;
 
-export type Value = {
+export type MetadataFieldValue = {
   external_id?: string | undefined;
   value?: string | undefined;
   position?: number | undefined;
   state?: MetadataFieldState | undefined;
 };
 
-export const Value$zodSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z
-  .object({
-    external_id: z.string().optional(),
-    position: z.number().int().optional(),
-    state: MetadataFieldState$zodSchema.optional(),
-    value: z.string().optional(),
-  });
+export const MetadataFieldValue$zodSchema: z.ZodType<
+  MetadataFieldValue,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  external_id: z.string().optional(),
+  position: z.number().int().optional(),
+  state: MetadataFieldState$zodSchema.optional(),
+  value: z.string().optional(),
+});
 
 /**
  * The datasource defined for the metadata field.
  */
-export type Datasource = { values?: Array<Value> | undefined };
+export type Datasource = { values?: Array<MetadataFieldValue> | undefined };
 
 export const Datasource$zodSchema: z.ZodType<
   Datasource,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  values: z.array(z.lazy(() => Value$zodSchema)).optional(),
+  values: z.array(z.lazy(() => MetadataFieldValue$zodSchema)).optional(),
 }).describe("The datasource defined for the metadata field.");
 
 export type MetadataField = {

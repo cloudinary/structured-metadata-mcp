@@ -1,18 +1,19 @@
-speakeasyVersion: 1.665.0
+speakeasyVersion: 1.668.0
 sources:
     CloudinarySMD-MCP-OAS:
         sourceNamespace: cloudinary-structured-metadata-mcp-oas
-        sourceRevisionDigest: sha256:c234ff8e4dea7fe2fc0fffe9a782fec3af5175e71a194b8173ed44a289b7fa14
-        sourceBlobDigest: sha256:a195ed37011ec32767e639dbf3a3f2f66ba8a89552e6f8c7a8820a817ede0cb4
+        sourceRevisionDigest: sha256:7a2d4deb09c1a070b65e8f228394452d0c65f362e54906a5ab4019d550b41c1b
+        sourceBlobDigest: sha256:3cc42bc0d56c8dd67bf5ea1d600e5c304fadc3604c17eec007c69e3d9c2f4344
         tags:
             - latest
+            - speakeasy-sdk-regen-test-workflow-1764839869
             - 0.3.5
 targets:
     cloudinary-structured-metadata-mcp:
         source: CloudinarySMD-MCP-OAS
         sourceNamespace: cloudinary-structured-metadata-mcp-oas
-        sourceRevisionDigest: sha256:c234ff8e4dea7fe2fc0fffe9a782fec3af5175e71a194b8173ed44a289b7fa14
-        sourceBlobDigest: sha256:a195ed37011ec32767e639dbf3a3f2f66ba8a89552e6f8c7a8820a817ede0cb4
+        sourceRevisionDigest: sha256:7a2d4deb09c1a070b65e8f228394452d0c65f362e54906a5ab4019d550b41c1b
+        sourceBlobDigest: sha256:3cc42bc0d56c8dd67bf5ea1d600e5c304fadc3604c17eec007c69e3d9c2f4344
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -26,6 +27,7 @@ workflow:
                 - location: https://cloudinary.github.io/api-schemas/overlays/mcp-disabled.yml
                 - location: https://cloudinary.github.io/api-schemas/overlays/remove-mcp-description.yml
                 - location: https://cloudinary.github.io/api-schemas/overlays/signature-optional-overlay.yml
+                - location: https://cloudinary.github.io/api-schemas/structured-metadata/overlays/metadata_rules_overlay.yml
             registry:
                 location: registry.speakeasyapi.dev/cloudinary/cloudinary/cloudinary-structured-metadata-mcp-oas
     targets:
