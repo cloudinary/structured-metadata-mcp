@@ -38,12 +38,20 @@
         "args": [
           "${__dirname}/bin/mcp-server.js",
           "start",
-          "--cloud-name",
-          "${user_config.cloud_name}",
+          "--server-index",
+          "${user_config.server_index}",
+          "--region",
+          "${user_config.region}",
+          "--api-host",
+          "${user_config.api_host}",
           "--api-key",
           "${user_config.api_key}",
           "--api-secret",
-          "${user_config.api_secret}"
+          "${user_config.api_secret}",
+          "--oauth2",
+          "${user_config.oauth2}",
+          "--cloud-name",
+          "${user_config.cloud_name}"
         ]
       }
     },
@@ -94,11 +102,12 @@
       }
     ],
   "user_config": {
-      "cloud_name": {
-        "description": "Your Cloudinary cloud name (required). Find it in your Cloudinary Dashboard.",
-        "required": true,
-        "title": "Cloud Name",
-        "type": "string"
+      "api_host": {
+        "type": "string",
+        "title": "host",
+        "description": "API host domain. Templated in https://{host}.",
+        "required": false,
+        "default": "api.cloudinary.com"
       },
       "api_key": {
         "description": "Your Cloudinary API key. Found in Dashboard → Settings → Access Keys.",
@@ -113,7 +122,35 @@
         "sensitive": true,
         "title": "API Secret",
         "type": "string"
+      },
+      "cloud_name": {
+        "description": "Your Cloudinary cloud name (required). Find it in your Cloudinary Dashboard.",
+        "required": true,
+        "title": "Cloud Name",
+        "type": "string"
+      },
+      "oauth2": {
+        "type": "string",
+        "title": "oauth2",
+        "description": "The oauth2 to use for the request",
+        "required": false,
+        "sensitive": true
+      },
+      "region": {
+        "type": "string",
+        "title": "region",
+        "description": "Regional endpoint selection Templated in https://{region}.cloudinary.com. Options: [api, api-eu, api-ap].",
+        "required": false,
+        "default": "api"
+      },
+      "server_index": {
+        "type": "number",
+        "title": "Server Index",
+        "description": "Available servers: [https://{region}.cloudinary.com, https://{host}]",
+        "required": false,
+        "default": "0",
+        "max": 1
       }
     },
-  "version": "0.3.0"
+  "version": "0.3.1"
 }

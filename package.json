@@ -1,9 +1,13 @@
 {
   "name": "@cloudinary/structured-metadata-mcp",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Cloudinary",
   "type": "module",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cloudinary/structured-metadata-mcp.git"
+  },
   "bin": {
     "@cloudinary/structured-metadata-mcp": "bin/mcp-server.js",
     "mcp": "bin/mcp-server.js"
