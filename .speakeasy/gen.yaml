@@ -13,6 +13,8 @@ generation:
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: true
     sharedErrorComponentsApr2025: true
+    sharedNestedComponentsJan2026: false
+    nameOverrideFeb2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
@@ -22,6 +24,8 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  versioningStrategy: automatic
+  persistentEdits: {}
   tests:
     generateTests: false
     generateNewTests: true
@@ -33,6 +37,11 @@ mcp-typescript:
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON: {}
+  advancedFlags:
+    - apiHost
+    - oauth2
+    - region
+    - serverIndex
   author: Cloudinary
   authors:
     - Cloudinary
@@ -51,6 +60,7 @@ mcp-typescript:
   flatteningOrder: parameters-first
   formStringArrayEncodeMode: encoded-string
   generateExamples: false
+  gramEnabled: false
   imports:
     option: openapi
     paths:
@@ -112,3 +122,4 @@ mcp-typescript:
   templateVersion: v2
   usageSDKInitImports: []
   useIndexModules: true
+  validateResponse: false
