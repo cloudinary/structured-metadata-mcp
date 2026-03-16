@@ -31,7 +31,7 @@ Updates the properties and configuration of the specified metadata field.`,
   },
   args,
   tool: async (client, args, ctx) => {
-    const [result, apiCall] = await metadataFieldsUpdateMetadataField(
+    const [result] = await metadataFieldsUpdateMetadataField(
       client,
       args.external_id,
       args.metadata_field,
@@ -45,8 +45,6 @@ Updates the properties and configuration of the specified metadata field.`,
       };
     }
 
-    const value = result.value;
-
-    return formatResult(value, apiCall);
+    return formatResult(result.value);
   },
 };

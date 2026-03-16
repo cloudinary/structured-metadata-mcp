@@ -3,15 +3,14 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
 import { MetadataField, MetadataField$zodSchema } from "./metadatafield.js";
 
 export type ReorderMetadataFieldsGlobals = { cloud_name?: string | undefined };
 
 export const ReorderMetadataFieldsGlobals$zodSchema: z.ZodType<
-  ReorderMetadataFieldsGlobals,
-  z.ZodTypeDef,
-  unknown
+  ReorderMetadataFieldsGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -20,23 +19,38 @@ export const ReorderMetadataFieldsGlobals$zodSchema: z.ZodType<
 /**
  * The field to order by.
  */
+export const OrderBy = {
+  Label: "label",
+  CreatedAt: "created_at",
+  ExternalId: "external_id",
+} as const;
+/**
+ * The field to order by.
+ */
+export type OrderBy = ClosedEnum<typeof OrderBy>;
+
 export const OrderBy$zodSchema = z.enum([
   "label",
   "created_at",
   "external_id",
 ]).describe("The field to order by.");
 
-export type OrderBy = z.infer<typeof OrderBy$zodSchema>;
-
 /**
  * The direction to order by.
  */
+export const Direction = {
+  Asc: "asc",
+  Desc: "desc",
+} as const;
+/**
+ * The direction to order by.
+ */
+export type Direction = ClosedEnum<typeof Direction>;
+
 export const Direction$zodSchema = z.enum([
   "asc",
   "desc",
 ]).describe("The direction to order by.");
-
-export type Direction = z.infer<typeof Direction$zodSchema>;
 
 export type ReorderMetadataFieldsRequest = {
   order_by: OrderBy;
@@ -44,9 +58,7 @@ export type ReorderMetadataFieldsRequest = {
 };
 
 export const ReorderMetadataFieldsRequest$zodSchema: z.ZodType<
-  ReorderMetadataFieldsRequest,
-  z.ZodTypeDef,
-  unknown
+  ReorderMetadataFieldsRequest
 > = z.object({
   direction: Direction$zodSchema.optional(),
   order_by: OrderBy$zodSchema,
@@ -60,9 +72,7 @@ export type ReorderMetadataFieldsResponseBody = {
 };
 
 export const ReorderMetadataFieldsResponseBody$zodSchema: z.ZodType<
-  ReorderMetadataFieldsResponseBody,
-  z.ZodTypeDef,
-  unknown
+  ReorderMetadataFieldsResponseBody
 > = z.object({
   metadata_fields: z.array(MetadataField$zodSchema).optional(),
 }).describe("metadata fields reordered");
@@ -72,9 +82,7 @@ export type ReorderMetadataFieldsResponse =
   | ReorderMetadataFieldsResponseBody;
 
 export const ReorderMetadataFieldsResponse$zodSchema: z.ZodType<
-  ReorderMetadataFieldsResponse,
-  z.ZodTypeDef,
-  unknown
+  ReorderMetadataFieldsResponse
 > = z.union([
   ApiError$zodSchema,
   z.lazy(() => ReorderMetadataFieldsResponseBody$zodSchema),

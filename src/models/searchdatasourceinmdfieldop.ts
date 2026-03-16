@@ -14,9 +14,7 @@ export type SearchDatasourceInMDFieldGlobals = {
 };
 
 export const SearchDatasourceInMDFieldGlobals$zodSchema: z.ZodType<
-  SearchDatasourceInMDFieldGlobals,
-  z.ZodTypeDef,
-  unknown
+  SearchDatasourceInMDFieldGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -27,17 +25,16 @@ export const SearchDatasourceInMDFieldGlobals$zodSchema: z.ZodType<
  */
 export type Payload = {};
 
-export const Payload$zodSchema: z.ZodType<Payload, z.ZodTypeDef, unknown> = z
-  .object({}).describe("Metadata payload for rule-based inference");
+export const Payload$zodSchema: z.ZodType<Payload> = z.object({}).describe(
+  "Metadata payload for rule-based inference",
+);
 
 export type SearchDatasourceInMDFieldRequestBody = {
   payload?: Payload | undefined;
 };
 
 export const SearchDatasourceInMDFieldRequestBody$zodSchema: z.ZodType<
-  SearchDatasourceInMDFieldRequestBody,
-  z.ZodTypeDef,
-  unknown
+  SearchDatasourceInMDFieldRequestBody
 > = z.object({
   payload: z.lazy(() => Payload$zodSchema).optional(),
 });
@@ -51,9 +48,7 @@ export type SearchDatasourceInMDFieldRequest = {
 };
 
 export const SearchDatasourceInMDFieldRequest$zodSchema: z.ZodType<
-  SearchDatasourceInMDFieldRequest,
-  z.ZodTypeDef,
-  unknown
+  SearchDatasourceInMDFieldRequest
 > = z.object({
   RequestBody: z.lazy(() => SearchDatasourceInMDFieldRequestBody$zodSchema),
   exact_match: z.boolean().default(false).describe(
@@ -62,7 +57,7 @@ export const SearchDatasourceInMDFieldRequest$zodSchema: z.ZodType<
   external_id: z.string().describe(
     "The external ID of the metadata field to search the datasource for.",
   ),
-  max_results: z.number().int().default(255).describe(
+  max_results: z.int().default(255).describe(
     "The maximum number of results to return.",
   ),
   term: z.string().describe(
@@ -75,9 +70,7 @@ export type SearchDatasourceInMDFieldResponse =
   | MetadataFieldDatasourceValuesArray;
 
 export const SearchDatasourceInMDFieldResponse$zodSchema: z.ZodType<
-  SearchDatasourceInMDFieldResponse,
-  z.ZodTypeDef,
-  unknown
+  SearchDatasourceInMDFieldResponse
 > = z.union([
   ApiError$zodSchema,
   MetadataFieldDatasourceValuesArray$zodSchema,

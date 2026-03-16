@@ -18,6 +18,7 @@
 * [Development](#development)
   * [Building from Source](#building-from-source)
   * [Contributions](#contributions)
+  * [Progressive Discovery](#progressive-discovery)
 
 <!-- End Table of Contents [toc] -->
 
@@ -25,11 +26,11 @@
 ## Installation
 
 <details>
-<summary>MCP Bundle (Desktop Extension)</summary>
+<summary>Claude Desktop</summary>
 
-Install the MCP server as a Desktop Extension using the pre-built [`mcp-server.mcpb`](./mcp-server.mcpb) file:
+Install the MCP server as a Desktop Extension using the pre-built [`mcp-server.mcpb`](https://github.com/cloudinary/structured-metadata-mcp/releases/download/v0.4.0/mcp-server.mcpb) file:
 
-Simply drag and drop the [`mcp-server.mcpb`](./mcp-server.mcpb) file onto Claude Desktop to install the extension.
+Simply drag and drop the [`mcp-server.mcpb`](https://github.com/cloudinary/structured-metadata-mcp/releases/download/v0.4.0/mcp-server.mcpb) file onto Claude Desktop to install the extension.
 
 The MCP bundle package includes the MCP server and all necessary configuration. Once installed, the server will be available without additional setup.
 
@@ -41,7 +42,7 @@ The MCP bundle package includes the MCP server and all necessary configuration. 
 <details>
 <summary>Cursor</summary>
 
-[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=CloudinarySMD&config=eyJtY3BTZXJ2ZXJzIjp7IkNsb3VkaW5hcnlTTUQiOnsiY29tbWFuZCI6Im5weCIsImFyZ3MiOlsiQGNsb3VkaW5hcnkvc3RydWN0dXJlZC1tZXRhZGF0YS1tY3AiLCJzdGFydCIsIi0tc2VydmVyLWluZGV4IiwiLi4uIiwiLS1yZWdpb24iLCIuLi4iLCItLWFwaS1ob3N0IiwiLi4uIiwiLS1hcGkta2V5IiwiLi4uIiwiLS1hcGktc2VjcmV0IiwiLi4uIiwiLS1vYXV0aDIiLCIuLi4iLCItLWNsb3VkLW5hbWUiLCIuLi4iXX19fQ==)
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](cursor://anysphere.cursor-deeplink/mcp/install?name=CloudinarySMD&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyJAY2xvdWRpbmFyeS9zdHJ1Y3R1cmVkLW1ldGFkYXRhLW1jcCIsInN0YXJ0IiwiLS1hcGkta2V5IiwiIiwiLS1hcGktc2VjcmV0IiwiIiwiLS1jbG91ZC1uYW1lIiwiIl19)
 
 Or manually:
 
@@ -52,29 +53,17 @@ Or manually:
 
 ```json
 {
-  "mcpServers": {
-    "CloudinarySMD": {
-      "command": "npx",
-      "args": [
-        "@cloudinary/structured-metadata-mcp",
-        "start",
-        "--server-index",
-        "...",
-        "--region",
-        "...",
-        "--api-host",
-        "...",
-        "--api-key",
-        "...",
-        "--api-secret",
-        "...",
-        "--oauth2",
-        "...",
-        "--cloud-name",
-        "..."
-      ]
-    }
-  }
+  "command": "npx",
+  "args": [
+    "@cloudinary/structured-metadata-mcp",
+    "start",
+    "--api-key",
+    "",
+    "--api-secret",
+    "",
+    "--cloud-name",
+    ""
+  ]
 }
 ```
 
@@ -84,7 +73,15 @@ Or manually:
 <summary>Claude Code CLI</summary>
 
 ```bash
-claude mcp add @cloudinary/structured-metadata-mcp npx @cloudinary/structured-metadata-mcp start -- --server-index ... --region ... --api-host ... --api-key ... --api-secret ... --oauth2 ... --cloud-name ...
+claude mcp add CloudinarySMD -- npx -y @cloudinary/structured-metadata-mcp start --api-key  --api-secret  --cloud-name 
+```
+
+</details>
+<details>
+<summary>Gemini</summary>
+
+```bash
+gemini mcp add CloudinarySMD -- npx -y @cloudinary/structured-metadata-mcp start --api-key  --api-secret  --cloud-name 
 ```
 
 </details>
@@ -98,120 +95,59 @@ Refer to [Official Windsurf documentation](https://docs.windsurf.com/windsurf/ca
 3. Click on `Manage MCPs`. (To Manage MCPs you should be signed in with a Windsurf Account)
 4. Click on `View raw config` to open up the mcp configuration file.
 5. If the configuration file is empty paste the full json
-```
+
+```bash
 {
-  "mcpServers": {
-    "CloudinarySMD": {
-      "command": "npx",
-      "args": [
-        "@cloudinary/structured-metadata-mcp",
-        "start",
-        "--server-index",
-        "...",
-        "--region",
-        "...",
-        "--api-host",
-        "...",
-        "--api-key",
-        "...",
-        "--api-secret",
-        "...",
-        "--oauth2",
-        "...",
-        "--cloud-name",
-        "..."
-      ]
-    }
-  }
+  "command": "npx",
+  "args": [
+    "@cloudinary/structured-metadata-mcp",
+    "start",
+    "--api-key",
+    "",
+    "--api-secret",
+    "",
+    "--cloud-name",
+    ""
+  ]
 }
 ```
 </details>
 <details>
 <summary>VS Code</summary>
 
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-VS_Code?style=flat-square&label=Install%20CloudinarySMD%20MCP&color=0098FF)](vscode://ms-vscode.vscode-mcp/install?name=CloudinarySMD&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyJAY2xvdWRpbmFyeS9zdHJ1Y3R1cmVkLW1ldGFkYXRhLW1jcCIsInN0YXJ0IiwiLS1hcGkta2V5IiwiIiwiLS1hcGktc2VjcmV0IiwiIiwiLS1jbG91ZC1uYW1lIiwiIl19)
+
+Or manually:
+
 Refer to [Official VS Code documentation](https://code.visualstudio.com/api/extension-guides/ai/mcp) for latest information
 
 1. Open [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette)
 1. Search and open `MCP: Open User Configuration`. This should open mcp.json file
 2. If the configuration file is empty paste the full json
-```
+
+```bash
 {
-  "mcpServers": {
-    "CloudinarySMD": {
-      "command": "npx",
-      "args": [
-        "@cloudinary/structured-metadata-mcp",
-        "start",
-        "--server-index",
-        "...",
-        "--region",
-        "...",
-        "--api-host",
-        "...",
-        "--api-key",
-        "...",
-        "--api-secret",
-        "...",
-        "--oauth2",
-        "...",
-        "--cloud-name",
-        "..."
-      ]
-    }
-  }
+  "command": "npx",
+  "args": [
+    "@cloudinary/structured-metadata-mcp",
+    "start",
+    "--api-key",
+    "",
+    "--api-secret",
+    "",
+    "--cloud-name",
+    ""
+  ]
 }
 ```
 
 </details>
-<details>
-<summary>Claude Desktop</summary>
-Claude Desktop doesn't yet support SSE/remote MCP servers.
-
-You need to do the following
-1. Open claude Desktop
-2. Open left hand side pane, then click on your Username
-3. Go to `Settings`
-4. Go to `Developer` tab (on the left hand side)
-5. Click on `Edit Config`
-Paste the following config in the configuration
-
-```json
-{
-  "mcpServers": {
-    "CloudinarySMD": {
-      "command": "npx",
-      "args": [
-        "@cloudinary/structured-metadata-mcp",
-        "start",
-        "--server-index",
-        "...",
-        "--region",
-        "...",
-        "--api-host",
-        "...",
-        "--api-key",
-        "...",
-        "--api-secret",
-        "...",
-        "--oauth2",
-        "...",
-        "--cloud-name",
-        "..."
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-
 <details>
 <summary> Stdio installation via npm </summary>
 To start the MCP server, run:
 
 ```bash
-npx @cloudinary/structured-metadata-mcp start --server-index ... --region ... --api-host ... --api-key ... --api-secret ... --oauth2 ... --cloud-name ...
+npx @cloudinary/structured-metadata-mcp start --api-key  --api-secret  --cloud-name 
 ```
 
 For a full list of server arguments, run:
@@ -363,5 +299,48 @@ We look forward to hearing your feedback. Feel free to open a PR or issue with a
 ---
 
 ### MCP Server Created by [Speakeasy](https://www.speakeasy.com/?utm_source=structured-metadata-mcp&utm_campaign=mcp-typescript)
+
+<!-- Start Progressive Discovery [dynamic-mode] -->
+## Progressive Discovery
+
+MCP servers with many tools can bloat LLM context windows, leading to increased token usage and tool confusion. Dynamic mode solves this by exposing only a small set of meta-tools that let agents progressively discover and invoke tools on demand.
+
+To enable dynamic mode, pass the `--mode dynamic` flag when starting your server:
+
+```jsonc
+{
+  "mcpServers": {
+    "CloudinarySMD": {
+      "command": "npx",
+      "args": ["@cloudinary/structured-metadata-mcp", "start", "--mode", "dynamic"],
+      // ... other server arguments
+    }
+  }
+}
+```
+
+In dynamic mode, the server registers only the following meta-tools instead of every individual tool:
+
+- **`list_tools`**: Lists all available tools with their names and descriptions.
+- **`describe_tool`**: Returns the input schema for one or more tools by name.
+- **`execute_tool`**: Executes a tool by name with the provided input parameters.
+- **`list_scopes`**: Lists the scopes available on the server.
+
+This approach significantly reduces the number of tokens sent to the LLM on each request, which is especially useful for servers with a large number of tools.
+
+You can combine dynamic mode with scope and tool filters:
+
+```jsonc
+{
+  "mcpServers": {
+    "CloudinarySMD": {
+      "command": "npx",
+      "args": ["@cloudinary/structured-metadata-mcp", "start", "--mode", "dynamic", "--scope", "admin"],
+      // ... other server arguments
+    }
+  }
+}
+```
+<!-- End Progressive Discovery [dynamic-mode] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

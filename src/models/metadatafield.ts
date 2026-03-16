@@ -3,10 +3,23 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 
 /**
  * The type of the metadata field.
  */
+export const Type = {
+  String: "string",
+  Integer: "integer",
+  Date: "date",
+  Enum: "enum",
+  Set: "set",
+} as const;
+/**
+ * The type of the metadata field.
+ */
+export type Type = ClosedEnum<typeof Type>;
+
 export const Type$zodSchema = z.enum([
   "string",
   "integer",
@@ -15,52 +28,49 @@ export const Type$zodSchema = z.enum([
   "set",
 ]).describe("The type of the metadata field.");
 
-export type Type = z.infer<typeof Type$zodSchema>;
-
+/**
+ * The default value of the metadata field.
+ */
 export type DefaultValue = string | number;
 
-export const DefaultValue$zodSchema: z.ZodType<
-  DefaultValue,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
+export const DefaultValue$zodSchema: z.ZodType<DefaultValue> = z.union([
   z.string(),
-  z.number().int(),
-]);
+  z.int(),
+]).describe("The default value of the metadata field.");
 
 /**
  * The validation defined for the metadata field.
  */
 export type Validation = {};
 
-export const Validation$zodSchema: z.ZodType<
-  Validation,
-  z.ZodTypeDef,
-  unknown
-> = z.object({}).describe("The validation defined for the metadata field.");
+export const Validation$zodSchema: z.ZodType<Validation> = z.object({})
+  .describe("The validation defined for the metadata field.");
 
 /**
  * The restrictions defined for the metadata field.
  */
 export type Restrictions = { readonly_ui?: boolean | undefined };
 
-export const Restrictions$zodSchema: z.ZodType<
-  Restrictions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
+export const Restrictions$zodSchema: z.ZodType<Restrictions> = z.object({
   readonly_ui: z.boolean().optional(),
 }).describe("The restrictions defined for the metadata field.");
 
 /**
  * The state of the option.
  */
+export const MetadataFieldState = {
+  Active: "active",
+  Inactive: "inactive",
+} as const;
+/**
+ * The state of the option.
+ */
+export type MetadataFieldState = ClosedEnum<typeof MetadataFieldState>;
+
 export const MetadataFieldState$zodSchema = z.enum([
   "active",
   "inactive",
 ]).describe("The state of the option.");
-
-export type MetadataFieldState = z.infer<typeof MetadataFieldState$zodSchema>;
 
 export type MetadataFieldValue = {
   external_id?: string | undefined;
@@ -69,27 +79,20 @@ export type MetadataFieldValue = {
   state?: MetadataFieldState | undefined;
 };
 
-export const MetadataFieldValue$zodSchema: z.ZodType<
-  MetadataFieldValue,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  external_id: z.string().optional(),
-  position: z.number().int().optional(),
-  state: MetadataFieldState$zodSchema.optional(),
-  value: z.string().optional(),
-});
+export const MetadataFieldValue$zodSchema: z.ZodType<MetadataFieldValue> = z
+  .object({
+    external_id: z.string().optional(),
+    position: z.int().optional(),
+    state: MetadataFieldState$zodSchema.optional(),
+    value: z.string().optional(),
+  });
 
 /**
  * The datasource defined for the metadata field.
  */
 export type Datasource = { values?: Array<MetadataFieldValue> | undefined };
 
-export const Datasource$zodSchema: z.ZodType<
-  Datasource,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
+export const Datasource$zodSchema: z.ZodType<Datasource> = z.object({
   values: z.array(z.lazy(() => MetadataFieldValue$zodSchema)).optional(),
 }).describe("The datasource defined for the metadata field.");
 
@@ -106,17 +109,13 @@ export type MetadataField = {
   allow_dynamic_list_values?: boolean | null | undefined;
 };
 
-export const MetadataField$zodSchema: z.ZodType<
-  MetadataField,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
+export const MetadataField$zodSchema: z.ZodType<MetadataField> = z.object({
   allow_dynamic_list_values: z.boolean().nullable().optional(),
   datasource: z.lazy(() => Datasource$zodSchema).nullable().optional(),
   default_disabled: z.boolean().nullable().optional(),
   default_value: z.union([
     z.string(),
-    z.number().int(),
+    z.int(),
   ]).nullable().optional(),
   external_id: z.string().optional(),
   label: z.string(),

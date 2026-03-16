@@ -4,7 +4,6 @@
 
 import { CloudinarySMDCore } from "../core.js";
 import { encodeJSON, encodeSimple } from "../lib/encodings.js";
-import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -23,8 +22,6 @@ import { MetadataRuleUpdate } from "../models/metadataruleupdate.js";
 import {
   UpdateMetadataRuleRequest,
   UpdateMetadataRuleRequest$zodSchema,
-  UpdateMetadataRuleResponse,
-  UpdateMetadataRuleResponse$zodSchema,
 } from "../models/updatemetadataruleop.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
@@ -42,7 +39,7 @@ export function metadataRulesUpdateMetadataRule(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    UpdateMetadataRuleResponse,
+    Response,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -68,7 +65,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      UpdateMetadataRuleResponse,
+      Response,
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -163,28 +160,9 @@ async function $do(
   if (!doResult.ok) {
     return [doResult, { status: "request-error", request: req$ }];
   }
-  const response = doResult.value;
-  const responseFields$ = {
-    HttpMeta: { Response: response, Request: req$ },
-  };
-
-  const [result$] = await M.match<
-    UpdateMetadataRuleResponse,
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
-    | RequestAbortedError
-    | RequestTimeoutError
-    | ConnectionError
-  >(
-    M.json(200, UpdateMetadataRuleResponse$zodSchema, {
-      key: "metadata_rule_response",
-    }),
-    M.json([400, 401, 403, 404], UpdateMetadataRuleResponse$zodSchema, {
-      key: "api_error",
-    }),
-  )(response, req$, { extraFields: responseFields$ });
-
-  return [result$, { status: "complete", request: req$, response }];
+  return [doResult, {
+    status: "complete",
+    "request": req$,
+    response: doResult.value,
+  }];
 }

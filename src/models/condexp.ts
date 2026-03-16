@@ -9,11 +9,10 @@ import * as z from "zod";
  */
 export type Equals = string | Array<string>;
 
-export const Equals$zodSchema: z.ZodType<Equals, z.ZodTypeDef, unknown> = z
-  .union([
-    z.string(),
-    z.array(z.string()),
-  ]).describe("The exact value(s) the metadata field should match.");
+export const Equals$zodSchema: z.ZodType<Equals> = z.union([
+  z.string(),
+  z.array(z.string()),
+]).describe("The exact value(s) the metadata field should match.");
 
 /**
  * Atomic condition that evaluates a single metadata field.
@@ -25,13 +24,12 @@ export type CondExp = {
   equals?: string | Array<string> | null | undefined;
 };
 
-export const CondExp$zodSchema: z.ZodType<CondExp, z.ZodTypeDef, unknown> = z
-  .object({
-    equals: z.union([
-      z.string(),
-      z.array(z.string()),
-    ]).nullable().optional(),
-    includes: z.array(z.string()).optional(),
-    metadata_field_id: z.string(),
-    populated: z.boolean().optional(),
-  }).describe("Atomic condition that evaluates a single metadata field.");
+export const CondExp$zodSchema: z.ZodType<CondExp> = z.object({
+  equals: z.union([
+    z.string(),
+    z.array(z.string()),
+  ]).nullable().optional(),
+  includes: z.array(z.string()).optional(),
+  metadata_field_id: z.string(),
+  populated: z.boolean().optional(),
+}).describe("Atomic condition that evaluates a single metadata field.");

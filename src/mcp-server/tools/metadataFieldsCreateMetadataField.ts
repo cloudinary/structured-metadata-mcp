@@ -27,7 +27,7 @@ Creates a new metadata field with the specified properties and configuration.`,
   },
   args,
   tool: async (client, args, ctx) => {
-    const [result, apiCall] = await metadataFieldsCreateMetadataField(
+    const [result] = await metadataFieldsCreateMetadataField(
       client,
       args.request,
       { fetchOptions: { signal: ctx.signal } },
@@ -40,8 +40,6 @@ Creates a new metadata field with the specified properties and configuration.`,
       };
     }
 
-    const value = result.value;
-
-    return formatResult(value, apiCall);
+    return formatResult(result.value);
   },
 };

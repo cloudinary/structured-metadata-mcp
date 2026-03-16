@@ -28,7 +28,7 @@ Permanently deletes a metadata rule.`,
     },
     args,
     tool: async (client, args, ctx) => {
-      const [result, apiCall] = await metadataRulesDeleteMetadataRule(
+      const [result] = await metadataRulesDeleteMetadataRule(
         client,
         args.external_id,
         { fetchOptions: { signal: ctx.signal } },
@@ -41,8 +41,6 @@ Permanently deletes a metadata rule.`,
         };
       }
 
-      const value = result.value;
-
-      return formatResult(value, apiCall);
+      return formatResult(result.value);
     },
   };

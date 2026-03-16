@@ -3,18 +3,26 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 
 /**
  * Whether to override existing options (override) or add to them (append). Default is append.
  */
+export const OptionsExpMode = {
+  Override: "override",
+  Append: "append",
+} as const;
+/**
+ * Whether to override existing options (override) or add to them (append). Default is append.
+ */
+export type OptionsExpMode = ClosedEnum<typeof OptionsExpMode>;
+
 export const OptionsExpMode$zodSchema = z.enum([
   "override",
   "append",
 ]).describe(
   "Whether to override existing options (override) or add to them (append). Default is append.",
 );
-
-export type OptionsExpMode = z.infer<typeof OptionsExpMode$zodSchema>;
 
 /**
  * Specifies which enum/set options to activate.
@@ -24,11 +32,7 @@ export type OptionsExp = {
   mode?: OptionsExpMode | undefined;
 };
 
-export const OptionsExp$zodSchema: z.ZodType<
-  OptionsExp,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
+export const OptionsExp$zodSchema: z.ZodType<OptionsExp> = z.object({
   external_ids: z.array(z.string()).nullable(),
   mode: OptionsExpMode$zodSchema.default("append"),
 }).describe("Specifies which enum/set options to activate.");

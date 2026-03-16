@@ -30,7 +30,7 @@ Updates the properties and configuration of an existing metadata rule.`,
     },
     args,
     tool: async (client, args, ctx) => {
-      const [result, apiCall] = await metadataRulesUpdateMetadataRule(
+      const [result] = await metadataRulesUpdateMetadataRule(
         client,
         args.external_id,
         args.metadata_rule_update,
@@ -44,8 +44,6 @@ Updates the properties and configuration of an existing metadata rule.`,
         };
       }
 
-      const value = result.value;
-
-      return formatResult(value, apiCall);
+      return formatResult(result.value);
     },
   };

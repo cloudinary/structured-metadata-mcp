@@ -13,9 +13,7 @@ export type MetadataFieldDatasourceValuesArray = {
 };
 
 export const MetadataFieldDatasourceValuesArray$zodSchema: z.ZodType<
-  MetadataFieldDatasourceValuesArray,
-  z.ZodTypeDef,
-  unknown
+  MetadataFieldDatasourceValuesArray
 > = z.object({
   values: z.array(MetadataFieldDatasourceValue$zodSchema).optional(),
 });

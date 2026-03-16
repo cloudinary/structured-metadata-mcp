@@ -3,28 +3,31 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 import { OptionsExp, OptionsExp$zodSchema } from "./optionsexp.js";
 import { ValueExp, ValueExp$zodSchema } from "./valueexp.js";
 
 /**
  * Activate all possible values for enum/set fields.
  */
+export const ActivateValuesEnum = {
+  All: "all",
+} as const;
+/**
+ * Activate all possible values for enum/set fields.
+ */
+export type ActivateValuesEnum = ClosedEnum<typeof ActivateValuesEnum>;
+
 export const ActivateValuesEnum$zodSchema = z.enum([
   "all",
 ]).describe("Activate all possible values for enum/set fields.");
-
-export type ActivateValuesEnum = z.infer<typeof ActivateValuesEnum$zodSchema>;
 
 /**
  * Controls which enum/set options are available for selection.
  */
 export type ActivateValues = OptionsExp | ActivateValuesEnum;
 
-export const ActivateValues$zodSchema: z.ZodType<
-  ActivateValues,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
+export const ActivateValues$zodSchema: z.ZodType<ActivateValues> = z.union([
   OptionsExp$zodSchema,
   ActivateValuesEnum$zodSchema,
 ]).describe("Controls which enum/set options are available for selection.");
@@ -39,13 +42,12 @@ export type ActionExp = {
   set_mandatory?: boolean | undefined;
 };
 
-export const ActionExp$zodSchema: z.ZodType<ActionExp, z.ZodTypeDef, unknown> =
-  z.object({
-    activate_values: z.union([
-      OptionsExp$zodSchema,
-      ActivateValuesEnum$zodSchema,
-    ]).optional(),
-    apply_value: ValueExp$zodSchema.optional(),
-    enable: z.boolean().optional(),
-    set_mandatory: z.boolean().optional(),
-  }).describe("The result/action to apply when the condition is met.");
+export const ActionExp$zodSchema: z.ZodType<ActionExp> = z.object({
+  activate_values: z.union([
+    OptionsExp$zodSchema,
+    ActivateValuesEnum$zodSchema,
+  ]).optional(),
+  apply_value: ValueExp$zodSchema.optional(),
+  enable: z.boolean().optional(),
+  set_mandatory: z.boolean().optional(),
+}).describe("The result/action to apply when the condition is met.");

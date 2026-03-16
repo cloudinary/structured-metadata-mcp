@@ -84,7 +84,10 @@ type SecurityInputOAuth2 = {
 type SecurityInputOAuth2ClientCredentials = {
   type: "oauth2:client_credentials";
   value:
-    | { clientID?: string | undefined; clientSecret?: string | undefined }
+    | {
+      clientID?: string | undefined;
+      clientSecret?: string | undefined;
+    }
     | null
     | string
     | undefined;
@@ -244,9 +247,9 @@ export function resolveGlobalSecurity(
         type: "http:custom",
         value: {
           api_key: security?.cloudinaryAuth?.api_key
-            ?? env().CLOUDINARY_API_KEY,
+            || env().CLOUDINARY_API_KEY,
           api_secret: security?.cloudinaryAuth?.api_secret
-            ?? env().CLOUDINARY_API_SECRET,
+            || env().CLOUDINARY_API_SECRET,
         },
       },
     ],
@@ -254,7 +257,7 @@ export function resolveGlobalSecurity(
       {
         fieldName: "Authorization",
         type: "oauth2",
-        value: security?.oauth2 ?? env().CLOUDINARY_OAUTH2,
+        value: security?.oauth2 || env().CLOUDINARY_OAUTH2,
       },
     ],
   );

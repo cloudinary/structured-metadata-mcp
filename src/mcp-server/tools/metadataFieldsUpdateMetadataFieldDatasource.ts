@@ -32,7 +32,7 @@ Updates the values in a metadata field's datasource, including adding, modifying
   },
   args,
   tool: async (client, args, ctx) => {
-    const [result, apiCall] = await metadataFieldsUpdateMetadataFieldDatasource(
+    const [result] = await metadataFieldsUpdateMetadataFieldDatasource(
       client,
       args.external_id,
       args.RequestBody,
@@ -46,8 +46,6 @@ Updates the values in a metadata field's datasource, including adding, modifying
       };
     }
 
-    const value = result.value;
-
-    return formatResult(value, apiCall);
+    return formatResult(result.value);
   },
 };

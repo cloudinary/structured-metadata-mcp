@@ -26,7 +26,7 @@ Creates a new metadata rule with the specified properties and configuration.`,
     },
     args,
     tool: async (client, args, ctx) => {
-      const [result, apiCall] = await metadataRulesCreateMetadataRule(
+      const [result] = await metadataRulesCreateMetadataRule(
         client,
         args.request,
         { fetchOptions: { signal: ctx.signal } },
@@ -39,8 +39,6 @@ Creates a new metadata rule with the specified properties and configuration.`,
         };
       }
 
-      const value = result.value;
-
-      return formatResult(value, apiCall);
+      return formatResult(result.value);
     },
   };

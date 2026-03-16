@@ -29,7 +29,7 @@ Permanently deletes the specified metadata field and all its associated data.`,
   },
   args,
   tool: async (client, args, ctx) => {
-    const [result, apiCall] = await metadataFieldsDeleteMetadataField(
+    const [result] = await metadataFieldsDeleteMetadataField(
       client,
       args.external_id,
       { fetchOptions: { signal: ctx.signal } },
@@ -42,8 +42,6 @@ Permanently deletes the specified metadata field and all its associated data.`,
       };
     }
 
-    const value = result.value;
-
-    return formatResult(value, apiCall);
+    return formatResult(result.value);
   },
 };

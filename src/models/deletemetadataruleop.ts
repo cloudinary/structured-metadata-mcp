@@ -8,9 +8,7 @@ import { ApiError, ApiError$zodSchema } from "./apierror.js";
 export type DeleteMetadataRuleGlobals = { cloud_name?: string | undefined };
 
 export const DeleteMetadataRuleGlobals$zodSchema: z.ZodType<
-  DeleteMetadataRuleGlobals,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataRuleGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -19,9 +17,7 @@ export const DeleteMetadataRuleGlobals$zodSchema: z.ZodType<
 export type DeleteMetadataRuleRequest = { external_id: string };
 
 export const DeleteMetadataRuleRequest$zodSchema: z.ZodType<
-  DeleteMetadataRuleRequest,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataRuleRequest
 > = z.object({
   external_id: z.string().describe(
     "The unique identifier of the metadata rule.",
@@ -34,9 +30,7 @@ export const DeleteMetadataRuleRequest$zodSchema: z.ZodType<
 export type DeleteMetadataRuleResponseBody = { success: boolean };
 
 export const DeleteMetadataRuleResponseBody$zodSchema: z.ZodType<
-  DeleteMetadataRuleResponseBody,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataRuleResponseBody
 > = z.object({
   success: z.boolean(),
 }).describe("metadata rule deleted.");
@@ -46,9 +40,7 @@ export type DeleteMetadataRuleResponse =
   | ApiError;
 
 export const DeleteMetadataRuleResponse$zodSchema: z.ZodType<
-  DeleteMetadataRuleResponse,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataRuleResponse
 > = z.union([
   z.lazy(() => DeleteMetadataRuleResponseBody$zodSchema),
   ApiError$zodSchema,

@@ -7,7 +7,7 @@ import { CondExp, CondExp$zodSchema } from "./condexp.js";
 
 export type And2 = CondExp | LogicExp1 | LogicExp2;
 
-export const And2$zodSchema: z.ZodType<And2, z.ZodTypeDef, unknown> = z.union([
+export const And2$zodSchema: z.ZodType<And2> = z.union([
   CondExp$zodSchema,
   z.union([
     z.lazy(() => LogicExp1$zodSchema),
@@ -17,7 +17,7 @@ export const And2$zodSchema: z.ZodType<And2, z.ZodTypeDef, unknown> = z.union([
 
 export type Or2 = CondExp | LogicExp1 | LogicExp2;
 
-export const Or2$zodSchema: z.ZodType<Or2, z.ZodTypeDef, unknown> = z.union([
+export const Or2$zodSchema: z.ZodType<Or2> = z.union([
   CondExp$zodSchema,
   z.union([
     z.lazy(() => LogicExp1$zodSchema),
@@ -30,27 +30,26 @@ export type LogicExp2 = {
   or: Array<CondExp | LogicExp1 | LogicExp2>;
 };
 
-export const LogicExp2$zodSchema: z.ZodType<LogicExp2, z.ZodTypeDef, unknown> =
-  z.object({
-    and: z.array(z.union([
-      CondExp$zodSchema,
-      z.union([
-        z.lazy(() => LogicExp1$zodSchema),
-        z.lazy(() => LogicExp2$zodSchema),
-      ]),
-    ])).optional(),
-    or: z.array(z.union([
-      CondExp$zodSchema,
-      z.union([
-        z.lazy(() => LogicExp1$zodSchema),
-        z.lazy(() => LogicExp2$zodSchema),
-      ]),
-    ])),
-  });
+export const LogicExp2$zodSchema: z.ZodType<LogicExp2> = z.object({
+  and: z.array(z.union([
+    CondExp$zodSchema,
+    z.union([
+      z.lazy(() => LogicExp1$zodSchema),
+      z.lazy(() => LogicExp2$zodSchema),
+    ]),
+  ])).optional(),
+  or: z.array(z.union([
+    CondExp$zodSchema,
+    z.union([
+      z.lazy(() => LogicExp1$zodSchema),
+      z.lazy(() => LogicExp2$zodSchema),
+    ]),
+  ])),
+});
 
 export type And1 = CondExp | LogicExp1 | LogicExp2;
 
-export const And1$zodSchema: z.ZodType<And1, z.ZodTypeDef, unknown> = z.union([
+export const And1$zodSchema: z.ZodType<And1> = z.union([
   CondExp$zodSchema,
   z.union([
     z.lazy(() => LogicExp1$zodSchema),
@@ -60,7 +59,7 @@ export const And1$zodSchema: z.ZodType<And1, z.ZodTypeDef, unknown> = z.union([
 
 export type Or1 = CondExp | LogicExp1 | LogicExp2;
 
-export const Or1$zodSchema: z.ZodType<Or1, z.ZodTypeDef, unknown> = z.union([
+export const Or1$zodSchema: z.ZodType<Or1> = z.union([
   CondExp$zodSchema,
   z.union([
     z.lazy(() => LogicExp1$zodSchema),
@@ -73,34 +72,29 @@ export type LogicExp1 = {
   or?: Array<CondExp | LogicExp1 | LogicExp2> | undefined;
 };
 
-export const LogicExp1$zodSchema: z.ZodType<LogicExp1, z.ZodTypeDef, unknown> =
-  z.object({
-    and: z.array(z.union([
-      CondExp$zodSchema,
-      z.union([
-        z.lazy(() => LogicExp1$zodSchema),
-        z.lazy(() => LogicExp2$zodSchema),
-      ]),
-    ])),
-    or: z.array(z.union([
-      CondExp$zodSchema,
-      z.union([
-        z.lazy(() => LogicExp1$zodSchema),
-        z.lazy(() => LogicExp2$zodSchema),
-      ]),
-    ])).optional(),
-  });
+export const LogicExp1$zodSchema: z.ZodType<LogicExp1> = z.object({
+  and: z.array(z.union([
+    CondExp$zodSchema,
+    z.union([
+      z.lazy(() => LogicExp1$zodSchema),
+      z.lazy(() => LogicExp2$zodSchema),
+    ]),
+  ])),
+  or: z.array(z.union([
+    CondExp$zodSchema,
+    z.union([
+      z.lazy(() => LogicExp1$zodSchema),
+      z.lazy(() => LogicExp2$zodSchema),
+    ]),
+  ])).optional(),
+});
 
 /**
  * Logical expression that combines multiple conditions using AND or OR operators.
  */
 export type LogicExpUnion = LogicExp1 | LogicExp2;
 
-export const LogicExpUnion$zodSchema: z.ZodType<
-  LogicExpUnion,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
+export const LogicExpUnion$zodSchema: z.ZodType<LogicExpUnion> = z.union([
   z.lazy(() => LogicExp1$zodSchema),
   z.lazy(() => LogicExp2$zodSchema),
 ]).describe(

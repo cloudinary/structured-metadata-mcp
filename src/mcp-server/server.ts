@@ -12,7 +12,7 @@ import {
   createRegisterResourceTemplate,
 } from "./resources.js";
 import { MCPScope } from "./scopes.js";
-import { createRegisterTool } from "./tools.js";
+import { createRegisterTool, registerDynamicTools } from "./tools.js";
 import { tool$metadataFieldsCreateMetadataField } from "./tools/metadataFieldsCreateMetadataField.js";
 import { tool$metadataFieldsDeleteMetadataField } from "./tools/metadataFieldsDeleteMetadataField.js";
 import { tool$metadataFieldsDeleteMetadataFieldDatasource } from "./tools/metadataFieldsDeleteMetadataFieldDatasource.js";
@@ -28,6 +28,7 @@ import { tool$metadataRulesUpdateMetadataRule } from "./tools/metadataRulesUpdat
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
   allowedTools?: string[] | undefined;
+  dynamic?: boolean | undefined;
   scopes?: MCPScope[] | undefined;
   getSDK?: () => CloudinarySMDCore;
   serverURL?: string | undefined;
@@ -39,7 +40,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CloudinarySMD",
-    version: "0.3.1",
+    version: "0.4.0",
   });
 
   const getClient = deps.getSDK || (() =>
@@ -62,12 +63,13 @@ export function createMCPServer(deps: {
   const scopes = new Set(deps.scopes);
 
   const allowedTools = deps.allowedTools && new Set(deps.allowedTools);
-  const tool = createRegisterTool(
+  const [tool, tools, toolMap] = createRegisterTool(
     deps.logger,
     server,
     getClient,
     scopes,
     allowedTools,
+    deps.dynamic,
   );
   const resource = createRegisterResource(
     deps.logger,
@@ -97,5 +99,9 @@ export function createMCPServer(deps: {
   tool(tool$metadataRulesUpdateMetadataRule);
   tool(tool$metadataRulesDeleteMetadataRule);
 
-  return server;
+  if (deps.dynamic) {
+    registerDynamicTools(deps.logger, server, getClient, toolMap, scopes);
+  }
+
+  return { server, tools };
 }

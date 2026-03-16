@@ -27,7 +27,7 @@ Retrieves a list of all metadata rules in the cloud.`,
     },
     args,
     tool: async (client, args, ctx) => {
-      const [result, apiCall] = await metadataRulesListMetadataRules(
+      const [result] = await metadataRulesListMetadataRules(
         client,
         args.request,
         { fetchOptions: { signal: ctx.signal } },
@@ -40,8 +40,6 @@ Retrieves a list of all metadata rules in the cloud.`,
         };
       }
 
-      const value = result.value;
-
-      return formatResult(value, apiCall);
+      return formatResult(result.value);
     },
   };
