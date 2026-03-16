@@ -6,14 +6,12 @@ import * as z from "zod";
 
 export type ErrorT = { message: string };
 
-export const ErrorT$zodSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
-  .object({
-    message: z.string(),
-  });
+export const ErrorT$zodSchema: z.ZodType<ErrorT> = z.object({
+  message: z.string(),
+});
 
 export type ApiError = { error: ErrorT };
 
-export const ApiError$zodSchema: z.ZodType<ApiError, z.ZodTypeDef, unknown> = z
-  .object({
-    error: z.lazy(() => ErrorT$zodSchema),
-  });
+export const ApiError$zodSchema: z.ZodType<ApiError> = z.object({
+  error: z.lazy(() => ErrorT$zodSchema),
+});

@@ -12,9 +12,7 @@ import {
 export type ListMetadataRulesGlobals = { cloud_name?: string | undefined };
 
 export const ListMetadataRulesGlobals$zodSchema: z.ZodType<
-  ListMetadataRulesGlobals,
-  z.ZodTypeDef,
-  unknown
+  ListMetadataRulesGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -23,9 +21,7 @@ export const ListMetadataRulesGlobals$zodSchema: z.ZodType<
 export type ListMetadataRulesRequest = {};
 
 export const ListMetadataRulesRequest$zodSchema: z.ZodType<
-  ListMetadataRulesRequest,
-  z.ZodTypeDef,
-  unknown
+  ListMetadataRulesRequest
 > = z.object({});
 
 /**
@@ -36,9 +32,7 @@ export type ListMetadataRulesResponseBody = {
 };
 
 export const ListMetadataRulesResponseBody$zodSchema: z.ZodType<
-  ListMetadataRulesResponseBody,
-  z.ZodTypeDef,
-  unknown
+  ListMetadataRulesResponseBody
 > = z.object({
   metadata_rules: z.array(MetadataRuleResponse$zodSchema).optional(),
 }).describe("metadata rules retrieved.");
@@ -48,9 +42,7 @@ export type ListMetadataRulesResponse =
   | ListMetadataRulesResponseBody;
 
 export const ListMetadataRulesResponse$zodSchema: z.ZodType<
-  ListMetadataRulesResponse,
-  z.ZodTypeDef,
-  unknown
+  ListMetadataRulesResponse
 > = z.union([
   ApiError$zodSchema,
   z.lazy(() => ListMetadataRulesResponseBody$zodSchema),

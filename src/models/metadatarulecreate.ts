@@ -3,20 +3,28 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 import { ActionExp, ActionExp$zodSchema } from "./actionexp.js";
 import { SmdCondition, SmdCondition$zodSchema } from "./smdcondition.js";
 
 /**
  * The state of the rule.
  */
+export const MetadataRuleCreateState = {
+  Active: "active",
+  Inactive: "inactive",
+} as const;
+/**
+ * The state of the rule.
+ */
+export type MetadataRuleCreateState = ClosedEnum<
+  typeof MetadataRuleCreateState
+>;
+
 export const MetadataRuleCreateState$zodSchema = z.enum([
   "active",
   "inactive",
 ]).describe("The state of the rule.");
-
-export type MetadataRuleCreateState = z.infer<
-  typeof MetadataRuleCreateState$zodSchema
->;
 
 export type MetadataRuleCreate = {
   metadata_field_id: string;
@@ -27,15 +35,12 @@ export type MetadataRuleCreate = {
   position?: number | undefined;
 };
 
-export const MetadataRuleCreate$zodSchema: z.ZodType<
-  MetadataRuleCreate,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  condition: SmdCondition$zodSchema,
-  metadata_field_id: z.string(),
-  name: z.string(),
-  position: z.number().int().optional(),
-  result: ActionExp$zodSchema,
-  state: MetadataRuleCreateState$zodSchema.optional(),
-});
+export const MetadataRuleCreate$zodSchema: z.ZodType<MetadataRuleCreate> = z
+  .object({
+    condition: SmdCondition$zodSchema,
+    metadata_field_id: z.string(),
+    name: z.string(),
+    position: z.int().optional(),
+    result: ActionExp$zodSchema,
+    state: MetadataRuleCreateState$zodSchema.optional(),
+  });

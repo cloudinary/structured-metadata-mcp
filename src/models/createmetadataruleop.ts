@@ -12,9 +12,7 @@ import {
 export type CreateMetadataRuleGlobals = { cloud_name?: string | undefined };
 
 export const CreateMetadataRuleGlobals$zodSchema: z.ZodType<
-  CreateMetadataRuleGlobals,
-  z.ZodTypeDef,
-  unknown
+  CreateMetadataRuleGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -23,9 +21,7 @@ export const CreateMetadataRuleGlobals$zodSchema: z.ZodType<
 export type CreateMetadataRuleResponse = ApiError | MetadataRuleResponse;
 
 export const CreateMetadataRuleResponse$zodSchema: z.ZodType<
-  CreateMetadataRuleResponse,
-  z.ZodTypeDef,
-  unknown
+  CreateMetadataRuleResponse
 > = z.union([
   ApiError$zodSchema,
   MetadataRuleResponse$zodSchema,

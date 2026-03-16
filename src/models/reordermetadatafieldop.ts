@@ -9,9 +9,7 @@ import { MetadataField, MetadataField$zodSchema } from "./metadatafield.js";
 export type ReorderMetadataFieldGlobals = { cloud_name?: string | undefined };
 
 export const ReorderMetadataFieldGlobals$zodSchema: z.ZodType<
-  ReorderMetadataFieldGlobals,
-  z.ZodTypeDef,
-  unknown
+  ReorderMetadataFieldGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -20,11 +18,9 @@ export const ReorderMetadataFieldGlobals$zodSchema: z.ZodType<
 export type ReorderMetadataFieldRequestBody = { position: number };
 
 export const ReorderMetadataFieldRequestBody$zodSchema: z.ZodType<
-  ReorderMetadataFieldRequestBody,
-  z.ZodTypeDef,
-  unknown
+  ReorderMetadataFieldRequestBody
 > = z.object({
-  position: z.number().int(),
+  position: z.int(),
 });
 
 export type ReorderMetadataFieldRequest = {
@@ -33,9 +29,7 @@ export type ReorderMetadataFieldRequest = {
 };
 
 export const ReorderMetadataFieldRequest$zodSchema: z.ZodType<
-  ReorderMetadataFieldRequest,
-  z.ZodTypeDef,
-  unknown
+  ReorderMetadataFieldRequest
 > = z.object({
   RequestBody: z.lazy(() => ReorderMetadataFieldRequestBody$zodSchema),
   external_id: z.string().describe(
@@ -51,9 +45,7 @@ export type ReorderMetadataFieldResponseBody = {
 };
 
 export const ReorderMetadataFieldResponseBody$zodSchema: z.ZodType<
-  ReorderMetadataFieldResponseBody,
-  z.ZodTypeDef,
-  unknown
+  ReorderMetadataFieldResponseBody
 > = z.object({
   metadata_fields: z.array(MetadataField$zodSchema).optional(),
 }).describe("metadata fields reordered");
@@ -63,9 +55,7 @@ export type ReorderMetadataFieldResponse =
   | ReorderMetadataFieldResponseBody;
 
 export const ReorderMetadataFieldResponse$zodSchema: z.ZodType<
-  ReorderMetadataFieldResponse,
-  z.ZodTypeDef,
-  unknown
+  ReorderMetadataFieldResponse
 > = z.union([
   ApiError$zodSchema,
   z.lazy(() => ReorderMetadataFieldResponseBody$zodSchema),

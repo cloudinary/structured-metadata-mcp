@@ -16,9 +16,7 @@ import {
 export type UpdateMetadataRuleGlobals = { cloud_name?: string | undefined };
 
 export const UpdateMetadataRuleGlobals$zodSchema: z.ZodType<
-  UpdateMetadataRuleGlobals,
-  z.ZodTypeDef,
-  unknown
+  UpdateMetadataRuleGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -30,9 +28,7 @@ export type UpdateMetadataRuleRequest = {
 };
 
 export const UpdateMetadataRuleRequest$zodSchema: z.ZodType<
-  UpdateMetadataRuleRequest,
-  z.ZodTypeDef,
-  unknown
+  UpdateMetadataRuleRequest
 > = z.object({
   external_id: z.string().describe(
     "The unique identifier of the metadata rule.",
@@ -43,9 +39,7 @@ export const UpdateMetadataRuleRequest$zodSchema: z.ZodType<
 export type UpdateMetadataRuleResponse = ApiError | MetadataRuleResponse;
 
 export const UpdateMetadataRuleResponse$zodSchema: z.ZodType<
-  UpdateMetadataRuleResponse,
-  z.ZodTypeDef,
-  unknown
+  UpdateMetadataRuleResponse
 > = z.union([
   ApiError$zodSchema,
   MetadataRuleResponse$zodSchema,

@@ -3,14 +3,11 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 
 export type ValueUnion1 = string | number;
 
-export const ValueUnion1$zodSchema: z.ZodType<
-  ValueUnion1,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
+export const ValueUnion1$zodSchema: z.ZodType<ValueUnion1> = z.union([
   z.string(),
   z.number(),
 ]);
@@ -20,11 +17,7 @@ export const ValueUnion1$zodSchema: z.ZodType<
  */
 export type ValueUnion2 = string | number | Array<string | number>;
 
-export const ValueUnion2$zodSchema: z.ZodType<
-  ValueUnion2,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
+export const ValueUnion2$zodSchema: z.ZodType<ValueUnion2> = z.union([
   z.string(),
   z.number(),
   z.array(z.union([
@@ -38,14 +31,21 @@ export const ValueUnion2$zodSchema: z.ZodType<
 /**
  * Whether to set as default value (default) or append to existing values (append). Default is default.
  */
+export const ValueExpMode = {
+  Default: "default",
+  Append: "append",
+} as const;
+/**
+ * Whether to set as default value (default) or append to existing values (append). Default is default.
+ */
+export type ValueExpMode = ClosedEnum<typeof ValueExpMode>;
+
 export const ValueExpMode$zodSchema = z.enum([
   "default",
   "append",
 ]).describe(
   "Whether to set as default value (default) or append to existing values (append). Default is default.",
 );
-
-export type ValueExpMode = z.infer<typeof ValueExpMode$zodSchema>;
 
 /**
  * Specifies a value to apply to the metadata field.
@@ -55,15 +55,14 @@ export type ValueExp = {
   mode?: ValueExpMode | undefined;
 };
 
-export const ValueExp$zodSchema: z.ZodType<ValueExp, z.ZodTypeDef, unknown> = z
-  .object({
-    mode: ValueExpMode$zodSchema.default("default"),
-    value: z.union([
+export const ValueExp$zodSchema: z.ZodType<ValueExp> = z.object({
+  mode: ValueExpMode$zodSchema.default("default"),
+  value: z.union([
+    z.string(),
+    z.number(),
+    z.array(z.union([
       z.string(),
       z.number(),
-      z.array(z.union([
-        z.string(),
-        z.number(),
-      ])),
-    ]),
-  }).describe("Specifies a value to apply to the metadata field.");
+    ])),
+  ]),
+}).describe("Specifies a value to apply to the metadata field.");

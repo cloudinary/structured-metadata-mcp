@@ -9,9 +9,7 @@ import { MetadataField, MetadataField$zodSchema } from "./metadatafield.js";
 export type GetMetadataFieldGlobals = { cloud_name?: string | undefined };
 
 export const GetMetadataFieldGlobals$zodSchema: z.ZodType<
-  GetMetadataFieldGlobals,
-  z.ZodTypeDef,
-  unknown
+  GetMetadataFieldGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -20,9 +18,7 @@ export const GetMetadataFieldGlobals$zodSchema: z.ZodType<
 export type GetMetadataFieldRequest = { external_id: string };
 
 export const GetMetadataFieldRequest$zodSchema: z.ZodType<
-  GetMetadataFieldRequest,
-  z.ZodTypeDef,
-  unknown
+  GetMetadataFieldRequest
 > = z.object({
   external_id: z.string().describe(
     "The external ID of the metadata field to retrieve.",
@@ -32,9 +28,7 @@ export const GetMetadataFieldRequest$zodSchema: z.ZodType<
 export type GetMetadataFieldResponse = MetadataField | ApiError;
 
 export const GetMetadataFieldResponse$zodSchema: z.ZodType<
-  GetMetadataFieldResponse,
-  z.ZodTypeDef,
-  unknown
+  GetMetadataFieldResponse
 > = z.union([
   MetadataField$zodSchema,
   ApiError$zodSchema,

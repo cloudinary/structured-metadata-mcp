@@ -8,9 +8,7 @@ import { ApiError, ApiError$zodSchema } from "./apierror.js";
 export type DeleteMetadataFieldGlobals = { cloud_name?: string | undefined };
 
 export const DeleteMetadataFieldGlobals$zodSchema: z.ZodType<
-  DeleteMetadataFieldGlobals,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataFieldGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -19,9 +17,7 @@ export const DeleteMetadataFieldGlobals$zodSchema: z.ZodType<
 export type DeleteMetadataFieldRequest = { external_id: string };
 
 export const DeleteMetadataFieldRequest$zodSchema: z.ZodType<
-  DeleteMetadataFieldRequest,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataFieldRequest
 > = z.object({
   external_id: z.string().describe(
     "The external ID of the metadata field to retrieve.",
@@ -34,9 +30,7 @@ export const DeleteMetadataFieldRequest$zodSchema: z.ZodType<
 export type DeleteMetadataFieldResponseBody = { message: string };
 
 export const DeleteMetadataFieldResponseBody$zodSchema: z.ZodType<
-  DeleteMetadataFieldResponseBody,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataFieldResponseBody
 > = z.object({
   message: z.string(),
 }).describe("metadata field deleted");
@@ -46,9 +40,7 @@ export type DeleteMetadataFieldResponse =
   | ApiError;
 
 export const DeleteMetadataFieldResponse$zodSchema: z.ZodType<
-  DeleteMetadataFieldResponse,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataFieldResponse
 > = z.union([
   z.lazy(() => DeleteMetadataFieldResponseBody$zodSchema),
   ApiError$zodSchema,

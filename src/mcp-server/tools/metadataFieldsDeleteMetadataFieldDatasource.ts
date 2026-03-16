@@ -32,7 +32,7 @@ Removes specific values from a metadata field's datasource by their external IDs
   },
   args,
   tool: async (client, args, ctx) => {
-    const [result, apiCall] = await metadataFieldsDeleteMetadataFieldDatasource(
+    const [result] = await metadataFieldsDeleteMetadataFieldDatasource(
       client,
       args.external_id,
       args.RequestBody,
@@ -46,8 +46,6 @@ Removes specific values from a metadata field's datasource by their external IDs
       };
     }
 
-    const value = result.value;
-
-    return formatResult(value, apiCall);
+    return formatResult(result.value);
   },
 };

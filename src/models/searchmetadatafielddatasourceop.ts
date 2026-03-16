@@ -10,9 +10,7 @@ export type SearchMetadataFieldDatasourceGlobals = {
 };
 
 export const SearchMetadataFieldDatasourceGlobals$zodSchema: z.ZodType<
-  SearchMetadataFieldDatasourceGlobals,
-  z.ZodTypeDef,
-  unknown
+  SearchMetadataFieldDatasourceGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -24,11 +22,9 @@ export type SearchMetadataFieldDatasourceRequest = {
 };
 
 export const SearchMetadataFieldDatasourceRequest$zodSchema: z.ZodType<
-  SearchMetadataFieldDatasourceRequest,
-  z.ZodTypeDef,
-  unknown
+  SearchMetadataFieldDatasourceRequest
 > = z.object({
-  max_results: z.number().int().default(100),
+  max_results: z.int().default(100),
   term: z.string().optional(),
 });
 
@@ -38,11 +34,7 @@ export type ResponseBody = {
   value?: string | undefined;
 };
 
-export const ResponseBody$zodSchema: z.ZodType<
-  ResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
+export const ResponseBody$zodSchema: z.ZodType<ResponseBody> = z.object({
   field_id: z.string().optional(),
   id: z.string().optional(),
   value: z.string().optional(),
@@ -53,9 +45,7 @@ export type SearchMetadataFieldDatasourceResponse =
   | Array<ResponseBody>;
 
 export const SearchMetadataFieldDatasourceResponse$zodSchema: z.ZodType<
-  SearchMetadataFieldDatasourceResponse,
-  z.ZodTypeDef,
-  unknown
+  SearchMetadataFieldDatasourceResponse
 > = z.union([
   ApiError$zodSchema,
   z.array(z.lazy(() => ResponseBody$zodSchema)).describe("search results"),

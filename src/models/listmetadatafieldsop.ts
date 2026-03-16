@@ -9,9 +9,7 @@ import { MetadataField, MetadataField$zodSchema } from "./metadatafield.js";
 export type ListMetadataFieldsGlobals = { cloud_name?: string | undefined };
 
 export const ListMetadataFieldsGlobals$zodSchema: z.ZodType<
-  ListMetadataFieldsGlobals,
-  z.ZodTypeDef,
-  unknown
+  ListMetadataFieldsGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -22,9 +20,7 @@ export type ListMetadataFieldsRequest = {
 };
 
 export const ListMetadataFieldsRequest$zodSchema: z.ZodType<
-  ListMetadataFieldsRequest,
-  z.ZodTypeDef,
-  unknown
+  ListMetadataFieldsRequest
 > = z.object({
   external_ids: z.array(z.string()).describe(
     "The external IDs of the metadata fields to retrieve. if not provided, all metadata fields will be returned.",
@@ -39,9 +35,7 @@ export type ListMetadataFieldsResponseBody = {
 };
 
 export const ListMetadataFieldsResponseBody$zodSchema: z.ZodType<
-  ListMetadataFieldsResponseBody,
-  z.ZodTypeDef,
-  unknown
+  ListMetadataFieldsResponseBody
 > = z.object({
   metadata_fields: z.array(MetadataField$zodSchema).optional(),
 }).describe("metadata fields retrieved");
@@ -51,9 +45,7 @@ export type ListMetadataFieldsResponse =
   | ListMetadataFieldsResponseBody;
 
 export const ListMetadataFieldsResponse$zodSchema: z.ZodType<
-  ListMetadataFieldsResponse,
-  z.ZodTypeDef,
-  unknown
+  ListMetadataFieldsResponse
 > = z.union([
   ApiError$zodSchema,
   z.lazy(() => ListMetadataFieldsResponseBody$zodSchema),

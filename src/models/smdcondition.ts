@@ -11,11 +11,7 @@ import { LogicExpUnion, LogicExpUnion$zodSchema } from "./logicexpunion.js";
  */
 export type SmdCondition = CondExp | LogicExpUnion;
 
-export const SmdCondition$zodSchema: z.ZodType<
-  SmdCondition,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
+export const SmdCondition$zodSchema: z.ZodType<SmdCondition> = z.union([
   CondExp$zodSchema,
   LogicExpUnion$zodSchema,
 ]).describe(

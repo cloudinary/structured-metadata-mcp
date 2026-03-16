@@ -14,9 +14,7 @@ export type DeleteMetadataFieldDatasourceGlobals = {
 };
 
 export const DeleteMetadataFieldDatasourceGlobals$zodSchema: z.ZodType<
-  DeleteMetadataFieldDatasourceGlobals,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataFieldDatasourceGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -27,9 +25,7 @@ export type DeleteMetadataFieldDatasourceRequestBody = {
 };
 
 export const DeleteMetadataFieldDatasourceRequestBody$zodSchema: z.ZodType<
-  DeleteMetadataFieldDatasourceRequestBody,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataFieldDatasourceRequestBody
 > = z.object({
   external_ids: z.array(z.string()),
 });
@@ -40,9 +36,7 @@ export type DeleteMetadataFieldDatasourceRequest = {
 };
 
 export const DeleteMetadataFieldDatasourceRequest$zodSchema: z.ZodType<
-  DeleteMetadataFieldDatasourceRequest,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataFieldDatasourceRequest
 > = z.object({
   RequestBody: z.lazy(() => DeleteMetadataFieldDatasourceRequestBody$zodSchema),
   external_id: z.string().describe(
@@ -55,9 +49,7 @@ export type DeleteMetadataFieldDatasourceResponse =
   | MetadataFieldDatasourceValuesArray;
 
 export const DeleteMetadataFieldDatasourceResponse$zodSchema: z.ZodType<
-  DeleteMetadataFieldDatasourceResponse,
-  z.ZodTypeDef,
-  unknown
+  DeleteMetadataFieldDatasourceResponse
 > = z.union([
   ApiError$zodSchema,
   MetadataFieldDatasourceValuesArray$zodSchema,

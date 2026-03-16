@@ -29,7 +29,7 @@ Retrieves detailed information about the specified metadata field.`,
     },
     args,
     tool: async (client, args, ctx) => {
-      const [result, apiCall] = await metadataFieldsGetMetadataField(
+      const [result] = await metadataFieldsGetMetadataField(
         client,
         args.external_id,
         { fetchOptions: { signal: ctx.signal } },
@@ -42,8 +42,6 @@ Retrieves detailed information about the specified metadata field.`,
         };
       }
 
-      const value = result.value;
-
-      return formatResult(value, apiCall);
+      return formatResult(result.value);
     },
   };

@@ -30,7 +30,7 @@ Retrieves a list of all metadata fields in the product environment based on the 
   },
   args,
   tool: async (client, args, ctx) => {
-    const [result, apiCall] = await metadataFieldsListMetadataFields(
+    const [result] = await metadataFieldsListMetadataFields(
       client,
       args.external_ids,
       { fetchOptions: { signal: ctx.signal } },
@@ -43,8 +43,6 @@ Retrieves a list of all metadata fields in the product environment based on the 
       };
     }
 
-    const value = result.value;
-
-    return formatResult(value, apiCall);
+    return formatResult(result.value);
   },
 };

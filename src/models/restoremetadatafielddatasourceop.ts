@@ -14,9 +14,7 @@ export type RestoreMetadataFieldDatasourceGlobals = {
 };
 
 export const RestoreMetadataFieldDatasourceGlobals$zodSchema: z.ZodType<
-  RestoreMetadataFieldDatasourceGlobals,
-  z.ZodTypeDef,
-  unknown
+  RestoreMetadataFieldDatasourceGlobals
 > = z.object({
   cloud_name: z.string().describe("The cloud name of your product environment.")
     .optional(),
@@ -27,9 +25,7 @@ export type RestoreMetadataFieldDatasourceRequestBody = {
 };
 
 export const RestoreMetadataFieldDatasourceRequestBody$zodSchema: z.ZodType<
-  RestoreMetadataFieldDatasourceRequestBody,
-  z.ZodTypeDef,
-  unknown
+  RestoreMetadataFieldDatasourceRequestBody
 > = z.object({
   external_ids: z.array(z.string()).optional(),
 });
@@ -40,9 +36,7 @@ export type RestoreMetadataFieldDatasourceRequest = {
 };
 
 export const RestoreMetadataFieldDatasourceRequest$zodSchema: z.ZodType<
-  RestoreMetadataFieldDatasourceRequest,
-  z.ZodTypeDef,
-  unknown
+  RestoreMetadataFieldDatasourceRequest
 > = z.object({
   RequestBody: z.lazy(() =>
     RestoreMetadataFieldDatasourceRequestBody$zodSchema
@@ -57,9 +51,7 @@ export type RestoreMetadataFieldDatasourceResponse =
   | MetadataFieldDatasourceValuesArray;
 
 export const RestoreMetadataFieldDatasourceResponse$zodSchema: z.ZodType<
-  RestoreMetadataFieldDatasourceResponse,
-  z.ZodTypeDef,
-  unknown
+  RestoreMetadataFieldDatasourceResponse
 > = z.union([
   ApiError$zodSchema,
   MetadataFieldDatasourceValuesArray$zodSchema,
