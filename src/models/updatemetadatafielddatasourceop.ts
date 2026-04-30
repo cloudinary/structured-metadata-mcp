@@ -3,12 +3,15 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../types/enums.js";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
 import {
-  MetadataFieldDatasourceValue,
-  MetadataFieldDatasourceValue$zodSchema,
-} from "./metadatafielddatasourcevalue.js";
+  MetadataFieldDatasourceValuesArray,
+  MetadataFieldDatasourceValuesArray$zodSchema,
+} from "./metadatafielddatasourcevaluesarray.js";
+import {
+  UpdateDatasourceRequest,
+  UpdateDatasourceRequest$zodSchema,
+} from "./updatedatasourcerequest.js";
 
 export type UpdateMetadataFieldDatasourceGlobals = {
   cloud_name?: string | undefined;
@@ -21,86 +24,29 @@ export const UpdateMetadataFieldDatasourceGlobals$zodSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * The state of the option.
- */
-export const UpdateMetadataFieldDatasourceState = {
-  Active: "active",
-  Inactive: "inactive",
-} as const;
-/**
- * The state of the option.
- */
-export type UpdateMetadataFieldDatasourceState = ClosedEnum<
-  typeof UpdateMetadataFieldDatasourceState
->;
-
-export const UpdateMetadataFieldDatasourceState$zodSchema = z.enum([
-  "active",
-  "inactive",
-]).describe("The state of the option.");
-
-export type UpdateMetadataFieldDatasourceValue = {
-  external_id?: string | undefined;
-  value?: string | undefined;
-  position?: number | undefined;
-  state?: UpdateMetadataFieldDatasourceState | undefined;
-};
-
-export const UpdateMetadataFieldDatasourceValue$zodSchema: z.ZodType<
-  UpdateMetadataFieldDatasourceValue
-> = z.object({
-  external_id: z.string().optional(),
-  position: z.int().optional(),
-  state: UpdateMetadataFieldDatasourceState$zodSchema.optional(),
-  value: z.string().optional(),
-});
-
-export type UpdateMetadataFieldDatasourceRequestBody = {
-  values?: Array<UpdateMetadataFieldDatasourceValue> | undefined;
-};
-
-export const UpdateMetadataFieldDatasourceRequestBody$zodSchema: z.ZodType<
-  UpdateMetadataFieldDatasourceRequestBody
-> = z.object({
-  values: z.array(z.lazy(() => UpdateMetadataFieldDatasourceValue$zodSchema))
-    .optional(),
-});
-
 export type UpdateMetadataFieldDatasourceRequest = {
   external_id: string;
-  RequestBody: UpdateMetadataFieldDatasourceRequestBody;
+  update_datasource_request: UpdateDatasourceRequest;
 };
 
 export const UpdateMetadataFieldDatasourceRequest$zodSchema: z.ZodType<
   UpdateMetadataFieldDatasourceRequest
 > = z.object({
-  RequestBody: z.lazy(() => UpdateMetadataFieldDatasourceRequestBody$zodSchema),
   external_id: z.string().describe(
     "The external ID of the metadata field to update the datasource for.",
   ),
+  update_datasource_request: UpdateDatasourceRequest$zodSchema.describe(
+    "The updated datasource values.",
+  ),
 });
-
-/**
- * datasource updated
- */
-export type UpdateMetadataFieldDatasourceResponseBody = {
-  values?: Array<MetadataFieldDatasourceValue> | undefined;
-};
-
-export const UpdateMetadataFieldDatasourceResponseBody$zodSchema: z.ZodType<
-  UpdateMetadataFieldDatasourceResponseBody
-> = z.object({
-  values: z.array(MetadataFieldDatasourceValue$zodSchema).optional(),
-}).describe("datasource updated");
 
 export type UpdateMetadataFieldDatasourceResponse =
   | ApiError
-  | UpdateMetadataFieldDatasourceResponseBody;
+  | MetadataFieldDatasourceValuesArray;
 
 export const UpdateMetadataFieldDatasourceResponse$zodSchema: z.ZodType<
   UpdateMetadataFieldDatasourceResponse
 > = z.union([
   ApiError$zodSchema,
-  z.lazy(() => UpdateMetadataFieldDatasourceResponseBody$zodSchema),
+  MetadataFieldDatasourceValuesArray$zodSchema,
 ]);

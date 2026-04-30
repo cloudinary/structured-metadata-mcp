@@ -9,6 +9,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import { DatasourceSearchInFieldRequest } from "../models/datasourcesearchinfieldrequest.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
@@ -21,7 +22,6 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import {
   SearchDatasourceInMDFieldRequest,
   SearchDatasourceInMDFieldRequest$zodSchema,
-  SearchDatasourceInMDFieldRequestBody,
 } from "../models/searchdatasourceinmdfieldop.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
@@ -35,7 +35,7 @@ import { Result } from "../types/fp.js";
 export function metadataFieldsSearchDatasourceInMDField(
   client$: CloudinarySMDCore,
   external_id: string,
-  RequestBody: SearchDatasourceInMDFieldRequestBody,
+  datasource_search_in_field_request: DatasourceSearchInFieldRequest,
   max_results?: number | undefined,
   term?: string | undefined,
   exact_match?: boolean | undefined,
@@ -55,7 +55,7 @@ export function metadataFieldsSearchDatasourceInMDField(
   return new APIPromise($do(
     client$,
     external_id,
-    RequestBody,
+    datasource_search_in_field_request,
     max_results,
     term,
     exact_match,
@@ -66,7 +66,7 @@ export function metadataFieldsSearchDatasourceInMDField(
 async function $do(
   client$: CloudinarySMDCore,
   external_id: string,
-  RequestBody: SearchDatasourceInMDFieldRequestBody,
+  datasource_search_in_field_request: DatasourceSearchInFieldRequest,
   max_results?: number | undefined,
   term?: string | undefined,
   exact_match?: boolean | undefined,
@@ -88,7 +88,7 @@ async function $do(
 > {
   const input$: SearchDatasourceInMDFieldRequest = {
     external_id: external_id,
-    RequestBody: RequestBody,
+    datasource_search_in_field_request: datasource_search_in_field_request,
     max_results: max_results,
     term: term,
     exact_match: exact_match,
@@ -103,7 +103,11 @@ async function $do(
     return [parsed$, { status: "invalid" }];
   }
   const payload$ = parsed$.value;
-  const body$ = encodeJSON("body", payload$.RequestBody, { explode: true });
+  const body$ = encodeJSON(
+    "body",
+    payload$.datasource_search_in_field_request,
+    { explode: true },
+  );
 
   const pathParams$ = {
     cloud_name: encodeSimple("cloud_name", client$._options.cloud_name, {

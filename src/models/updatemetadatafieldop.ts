@@ -23,17 +23,17 @@ export type UpdateMetadataFieldRequest = {
 export const UpdateMetadataFieldRequest$zodSchema: z.ZodType<
   UpdateMetadataFieldRequest
 > = z.object({
-  external_id: z.string().describe(
-    "The external ID of the metadata field to retrieve.",
+  external_id: z.string().describe("The external ID of the metadata field."),
+  metadata_field: MetadataField$zodSchema.describe(
+    "The updated metadata field definition.",
   ),
-  metadata_field: MetadataField$zodSchema,
 });
 
-export type UpdateMetadataFieldResponse = MetadataField | ApiError;
+export type UpdateMetadataFieldResponse = ApiError | MetadataField;
 
 export const UpdateMetadataFieldResponse$zodSchema: z.ZodType<
   UpdateMetadataFieldResponse
 > = z.union([
-  MetadataField$zodSchema,
   ApiError$zodSchema,
+  MetadataField$zodSchema,
 ]);

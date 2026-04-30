@@ -4,14 +4,16 @@
 
 import * as z from "zod";
 import { metadataFieldsUpdateMetadataFieldDatasource } from "../../funcs/metadataFieldsUpdateMetadataFieldDatasource.js";
-import { UpdateMetadataFieldDatasourceRequestBody$zodSchema } from "../../models/updatemetadatafielddatasourceop.js";
+import { UpdateDatasourceRequest$zodSchema } from "../../models/updatedatasourcerequest.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   external_id: z.string().describe(
     "The external ID of the metadata field to update the datasource for.",
   ),
-  RequestBody: UpdateMetadataFieldDatasourceRequestBody$zodSchema,
+  update_datasource_request: UpdateDatasourceRequest$zodSchema.describe(
+    `The updated datasource values.`,
+  ),
 };
 
 export const tool$metadataFieldsUpdateMetadataFieldDatasource: ToolDefinition<
@@ -35,7 +37,7 @@ Updates the values in a metadata field's datasource, including adding, modifying
     const [result] = await metadataFieldsUpdateMetadataFieldDatasource(
       client,
       args.external_id,
-      args.RequestBody,
+      args.update_datasource_request,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

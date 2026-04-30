@@ -3,8 +3,10 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../types/enums.js";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
 import { MetadataField, MetadataField$zodSchema } from "./metadatafield.js";
+import { StateEnum, StateEnum$zodSchema } from "./stateenum.js";
 
 export type CreateMetadataFieldGlobals = { cloud_name?: string | undefined };
 
@@ -15,11 +17,144 @@ export const CreateMetadataFieldGlobals$zodSchema: z.ZodType<
     .optional(),
 });
 
-export type CreateMetadataFieldResponse = MetadataField | ApiError;
+/**
+ * The type of the metadata field.
+ */
+export const CreateMetadataFieldType = {
+  String: "string",
+  Integer: "integer",
+  Date: "date",
+  Enum: "enum",
+  Set: "set",
+} as const;
+/**
+ * The type of the metadata field.
+ */
+export type CreateMetadataFieldType = ClosedEnum<
+  typeof CreateMetadataFieldType
+>;
+
+export const CreateMetadataFieldType$zodSchema = z.enum([
+  "string",
+  "integer",
+  "date",
+  "enum",
+  "set",
+]).describe("The type of the metadata field.");
+
+/**
+ * The default value of the metadata field.
+ */
+export type CreateMetadataFieldDefaultValue = string | number;
+
+export const CreateMetadataFieldDefaultValue$zodSchema: z.ZodType<
+  CreateMetadataFieldDefaultValue
+> = z.union([
+  z.string(),
+  z.int(),
+]).describe("The default value of the metadata field.");
+
+/**
+ * The restrictions defined for the metadata field.
+ */
+export type CreateMetadataFieldRestrictions = {
+  readonly_ui?: boolean | undefined;
+};
+
+export const CreateMetadataFieldRestrictions$zodSchema: z.ZodType<
+  CreateMetadataFieldRestrictions
+> = z.object({
+  readonly_ui: z.boolean().optional().describe(
+    "Whether the metadata field is read-only in the UI. when true, the metadata field can only be updated via the API.",
+  ),
+}).describe("The restrictions defined for the metadata field.");
+
+export type CreateMetadataFieldValue = {
+  external_id?: string | undefined;
+  value?: string | undefined;
+  position?: number | undefined;
+  state?: StateEnum | undefined;
+};
+
+export const CreateMetadataFieldValue$zodSchema: z.ZodType<
+  CreateMetadataFieldValue
+> = z.object({
+  external_id: z.string().optional().describe("The external ID of the option."),
+  position: z.int().optional().describe("The position of the option."),
+  state: StateEnum$zodSchema.optional().describe(
+    "The active or inactive state.",
+  ),
+  value: z.string().optional().describe("The value of the option."),
+});
+
+/**
+ * The datasource defined for the metadata field.
+ */
+export type CreateMetadataFieldDatasource = {
+  values?: Array<CreateMetadataFieldValue> | undefined;
+};
+
+export const CreateMetadataFieldDatasource$zodSchema: z.ZodType<
+  CreateMetadataFieldDatasource
+> = z.object({
+  values: z.array(z.lazy(() => CreateMetadataFieldValue$zodSchema)).optional(),
+}).describe("The datasource defined for the metadata field.");
+
+/**
+ * The metadata field definition.
+ */
+export type CreateMetadataFieldRequest = {
+  type: CreateMetadataFieldType;
+  external_id?: string | undefined;
+  label: string;
+  mandatory?: boolean | null | undefined;
+  default_value?: string | number | null | undefined;
+  default_disabled?: boolean | null | undefined;
+  validation?: { [k: string]: any } | null | undefined;
+  restrictions?: CreateMetadataFieldRestrictions | null | undefined;
+  datasource?: CreateMetadataFieldDatasource | null | undefined;
+  allow_dynamic_list_values?: boolean | null | undefined;
+};
+
+export const CreateMetadataFieldRequest$zodSchema: z.ZodType<
+  CreateMetadataFieldRequest
+> = z.object({
+  allow_dynamic_list_values: z.boolean().nullable().optional().describe(
+    "Whether the metadata field allows adding new options to the datasource dynamically.",
+  ),
+  datasource: z.lazy(() => CreateMetadataFieldDatasource$zodSchema).nullable()
+    .optional().describe("The datasource defined for the metadata field."),
+  default_disabled: z.boolean().nullable().optional().describe(
+    "Whether the default value is disabled.",
+  ),
+  default_value: z.union([
+    z.string(),
+    z.int(),
+  ]).nullable().optional().describe("The default value of the metadata field."),
+  external_id: z.string().optional().describe(
+    "The external ID of the metadata field.",
+  ),
+  label: z.string().describe("The label of the metadata field."),
+  mandatory: z.boolean().nullable().optional().describe(
+    "Whether the metadata field is mandatory.",
+  ),
+  restrictions: z.lazy(() => CreateMetadataFieldRestrictions$zodSchema)
+    .nullable().optional().describe(
+      "The restrictions defined for the metadata field.",
+    ),
+  type: CreateMetadataFieldType$zodSchema.describe(
+    "The type of the metadata field.",
+  ),
+  validation: z.record(z.string(), z.any()).nullable().optional().describe(
+    "The validation defined for the metadata field.",
+  ),
+}).describe("The metadata field definition.");
+
+export type CreateMetadataFieldResponse = ApiError | MetadataField;
 
 export const CreateMetadataFieldResponse$zodSchema: z.ZodType<
   CreateMetadataFieldResponse
 > = z.union([
-  MetadataField$zodSchema,
   ApiError$zodSchema,
+  MetadataField$zodSchema,
 ]);

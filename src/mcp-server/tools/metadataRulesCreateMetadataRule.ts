@@ -7,7 +7,9 @@ import { MetadataRuleCreate$zodSchema } from "../../models/metadatarulecreate.js
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  request: MetadataRuleCreate$zodSchema,
+  request: MetadataRuleCreate$zodSchema.describe(
+    `The metadata rule to create.`,
+  ),
 };
 
 export const tool$metadataRulesCreateMetadataRule: ToolDefinition<typeof args> =

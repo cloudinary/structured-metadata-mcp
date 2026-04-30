@@ -18,10 +18,10 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import { UpdateDatasourceRequest } from "../models/updatedatasourcerequest.js";
 import {
   UpdateMetadataFieldDatasourceRequest,
   UpdateMetadataFieldDatasourceRequest$zodSchema,
-  UpdateMetadataFieldDatasourceRequestBody,
 } from "../models/updatemetadatafielddatasourceop.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
@@ -35,7 +35,7 @@ import { Result } from "../types/fp.js";
 export function metadataFieldsUpdateMetadataFieldDatasource(
   client$: CloudinarySMDCore,
   external_id: string,
-  RequestBody: UpdateMetadataFieldDatasourceRequestBody,
+  update_datasource_request: UpdateDatasourceRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -52,7 +52,7 @@ export function metadataFieldsUpdateMetadataFieldDatasource(
   return new APIPromise($do(
     client$,
     external_id,
-    RequestBody,
+    update_datasource_request,
     options,
   ));
 }
@@ -60,7 +60,7 @@ export function metadataFieldsUpdateMetadataFieldDatasource(
 async function $do(
   client$: CloudinarySMDCore,
   external_id: string,
-  RequestBody: UpdateMetadataFieldDatasourceRequestBody,
+  update_datasource_request: UpdateDatasourceRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -79,7 +79,7 @@ async function $do(
 > {
   const input$: UpdateMetadataFieldDatasourceRequest = {
     external_id: external_id,
-    RequestBody: RequestBody,
+    update_datasource_request: update_datasource_request,
   };
 
   const parsed$ = safeParse(
@@ -91,7 +91,9 @@ async function $do(
     return [parsed$, { status: "invalid" }];
   }
   const payload$ = parsed$.value;
-  const body$ = encodeJSON("body", payload$.RequestBody, { explode: true });
+  const body$ = encodeJSON("body", payload$.update_datasource_request, {
+    explode: true,
+  });
 
   const pathParams$ = {
     cloud_name: encodeSimple("cloud_name", client$._options.cloud_name, {

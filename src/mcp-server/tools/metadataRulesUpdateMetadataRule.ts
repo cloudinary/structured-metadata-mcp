@@ -11,7 +11,9 @@ const args = {
   external_id: z.string().describe(
     "The unique identifier of the metadata rule.",
   ),
-  metadata_rule_update: MetadataRuleUpdate$zodSchema,
+  metadata_rule_update: MetadataRuleUpdate$zodSchema.describe(
+    `The updated metadata rule definition.`,
+  ),
 };
 
 export const tool$metadataRulesUpdateMetadataRule: ToolDefinition<typeof args> =

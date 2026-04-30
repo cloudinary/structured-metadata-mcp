@@ -37,14 +37,14 @@ export const LogicExp2$zodSchema: z.ZodType<LogicExp2> = z.object({
       z.lazy(() => LogicExp1$zodSchema),
       z.lazy(() => LogicExp2$zodSchema),
     ]),
-  ])).optional(),
+  ])).optional().describe("All conditions in this array must be true."),
   or: z.array(z.union([
     CondExp$zodSchema,
     z.union([
       z.lazy(() => LogicExp1$zodSchema),
       z.lazy(() => LogicExp2$zodSchema),
     ]),
-  ])),
+  ])).describe("At least one condition in this array must be true."),
 });
 
 export type And1 = CondExp | LogicExp1 | LogicExp2;
@@ -79,14 +79,14 @@ export const LogicExp1$zodSchema: z.ZodType<LogicExp1> = z.object({
       z.lazy(() => LogicExp1$zodSchema),
       z.lazy(() => LogicExp2$zodSchema),
     ]),
-  ])),
+  ])).describe("All conditions in this array must be true."),
   or: z.array(z.union([
     CondExp$zodSchema,
     z.union([
       z.lazy(() => LogicExp1$zodSchema),
       z.lazy(() => LogicExp2$zodSchema),
     ]),
-  ])).optional(),
+  ])).optional().describe("At least one condition in this array must be true."),
 });
 
 /**

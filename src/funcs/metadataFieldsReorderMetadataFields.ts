@@ -21,7 +21,7 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import {
   ReorderMetadataFieldsRequest,
   ReorderMetadataFieldsRequest$zodSchema,
-} from "../models/reordermetadatafieldsop.js";
+} from "../models/reordermetadatafieldsrequest.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 

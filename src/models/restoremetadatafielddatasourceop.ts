@@ -5,6 +5,10 @@
 import * as z from "zod";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
 import {
+  DatasourceExternalIdsRequest,
+  DatasourceExternalIdsRequest$zodSchema,
+} from "./datasourceexternalidsrequest.js";
+import {
   MetadataFieldDatasourceValuesArray,
   MetadataFieldDatasourceValuesArray$zodSchema,
 } from "./metadatafielddatasourcevaluesarray.js";
@@ -20,27 +24,16 @@ export const RestoreMetadataFieldDatasourceGlobals$zodSchema: z.ZodType<
     .optional(),
 });
 
-export type RestoreMetadataFieldDatasourceRequestBody = {
-  external_ids?: Array<string> | undefined;
-};
-
-export const RestoreMetadataFieldDatasourceRequestBody$zodSchema: z.ZodType<
-  RestoreMetadataFieldDatasourceRequestBody
-> = z.object({
-  external_ids: z.array(z.string()).optional(),
-});
-
 export type RestoreMetadataFieldDatasourceRequest = {
   external_id: string;
-  RequestBody: RestoreMetadataFieldDatasourceRequestBody;
+  datasource_external_ids_request: DatasourceExternalIdsRequest;
 };
 
 export const RestoreMetadataFieldDatasourceRequest$zodSchema: z.ZodType<
   RestoreMetadataFieldDatasourceRequest
 > = z.object({
-  RequestBody: z.lazy(() =>
-    RestoreMetadataFieldDatasourceRequestBody$zodSchema
-  ),
+  datasource_external_ids_request: DatasourceExternalIdsRequest$zodSchema
+    .describe("The datasource entry external IDs to restore."),
   external_id: z.string().describe(
     "The external ID of the metadata field to restore the datasource values for.",
   ),

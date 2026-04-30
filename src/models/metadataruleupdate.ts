@@ -3,44 +3,37 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../types/enums.js";
 import { ActionExp, ActionExp$zodSchema } from "./actionexp.js";
 import { SmdCondition, SmdCondition$zodSchema } from "./smdcondition.js";
-
-/**
- * The state of the rule.
- */
-export const MetadataRuleUpdateState = {
-  Active: "active",
-  Inactive: "inactive",
-} as const;
-/**
- * The state of the rule.
- */
-export type MetadataRuleUpdateState = ClosedEnum<
-  typeof MetadataRuleUpdateState
->;
-
-export const MetadataRuleUpdateState$zodSchema = z.enum([
-  "active",
-  "inactive",
-]).describe("The state of the rule.");
+import { StateEnum, StateEnum$zodSchema } from "./stateenum.js";
 
 export type MetadataRuleUpdate = {
   metadata_field_id?: string | undefined;
   name?: string | undefined;
   condition?: SmdCondition | undefined;
   result?: ActionExp | undefined;
-  state?: MetadataRuleUpdateState | undefined;
+  state?: StateEnum | undefined;
   position?: number | undefined;
 };
 
 export const MetadataRuleUpdate$zodSchema: z.ZodType<MetadataRuleUpdate> = z
   .object({
-    condition: SmdCondition$zodSchema.optional(),
-    metadata_field_id: z.string().optional(),
-    name: z.string().optional(),
-    position: z.int().optional(),
-    result: ActionExp$zodSchema.optional(),
-    state: MetadataRuleUpdateState$zodSchema.optional(),
+    condition: SmdCondition$zodSchema.optional().describe(
+      "The condition that triggers this metadata rule. Can be either a logical expression (and/or) or an atomic condition.",
+    ),
+    metadata_field_id: z.string().optional().describe(
+      "The ID of the metadata field this rule applies to.",
+    ),
+    name: z.string().optional().describe(
+      "A descriptive name for the metadata rule.",
+    ),
+    position: z.int().optional().describe(
+      "The position/order of this rule relative to other rules.",
+    ),
+    result: ActionExp$zodSchema.optional().describe(
+      "The result/action to apply when the condition is met.",
+    ),
+    state: StateEnum$zodSchema.optional().describe(
+      "The active or inactive state.",
+    ),
   });

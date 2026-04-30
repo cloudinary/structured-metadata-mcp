@@ -7,9 +7,7 @@ import { metadataFieldsGetMetadataField } from "../../funcs/metadataFieldsGetMet
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  external_id: z.string().describe(
-    "The external ID of the metadata field to retrieve.",
-  ),
+  external_id: z.string().describe("The external ID of the metadata field."),
 };
 
 export const tool$metadataFieldsGetMetadataField: ToolDefinition<typeof args> =

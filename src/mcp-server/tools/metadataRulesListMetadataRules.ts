@@ -14,7 +14,7 @@ export const tool$metadataRulesListMetadataRules: ToolDefinition<typeof args> =
   {
     name: "list-metadata-rules",
     description:
-      `Retrieves a list of all conditional metadata rules defined in your accountcloudinary
+      `Retrieves a list of all conditional metadata rules defined in your account
 
 Retrieves a list of all metadata rules in the cloud.`,
     scopes: ["builder"],

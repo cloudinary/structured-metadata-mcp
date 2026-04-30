@@ -34,7 +34,7 @@ export const toolNames: Array<{ name: string; description: string }>= [
   },
   {
     "name": "list-metadata-rules",
-    "description": "Retrieves a list of all conditional metadata rules defined in your accountcloudinary\n\nRetrieves a list of all metadata rules in the cloud."
+    "description": "Retrieves a list of all conditional metadata rules defined in your account\n\nRetrieves a list of all metadata rules in the cloud."
   },
   {
     "name": "update-metadata-rule",

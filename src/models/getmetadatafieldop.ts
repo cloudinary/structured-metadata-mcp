@@ -20,16 +20,14 @@ export type GetMetadataFieldRequest = { external_id: string };
 export const GetMetadataFieldRequest$zodSchema: z.ZodType<
   GetMetadataFieldRequest
 > = z.object({
-  external_id: z.string().describe(
-    "The external ID of the metadata field to retrieve.",
-  ),
+  external_id: z.string().describe("The external ID of the metadata field."),
 });
 
-export type GetMetadataFieldResponse = MetadataField | ApiError;
+export type GetMetadataFieldResponse = ApiError | MetadataField;
 
 export const GetMetadataFieldResponse$zodSchema: z.ZodType<
   GetMetadataFieldResponse
 > = z.union([
-  MetadataField$zodSchema,
   ApiError$zodSchema,
+  MetadataField$zodSchema,
 ]);

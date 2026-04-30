@@ -3,9 +3,11 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../types/enums.js";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
-import { MetadataField, MetadataField$zodSchema } from "./metadatafield.js";
+import {
+  MetadataFieldsListResponse,
+  MetadataFieldsListResponse$zodSchema,
+} from "./metadatafieldslistresponse.js";
 
 export type ReorderMetadataFieldsGlobals = { cloud_name?: string | undefined };
 
@@ -16,74 +18,13 @@ export const ReorderMetadataFieldsGlobals$zodSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * The field to order by.
- */
-export const OrderBy = {
-  Label: "label",
-  CreatedAt: "created_at",
-  ExternalId: "external_id",
-} as const;
-/**
- * The field to order by.
- */
-export type OrderBy = ClosedEnum<typeof OrderBy>;
-
-export const OrderBy$zodSchema = z.enum([
-  "label",
-  "created_at",
-  "external_id",
-]).describe("The field to order by.");
-
-/**
- * The direction to order by.
- */
-export const Direction = {
-  Asc: "asc",
-  Desc: "desc",
-} as const;
-/**
- * The direction to order by.
- */
-export type Direction = ClosedEnum<typeof Direction>;
-
-export const Direction$zodSchema = z.enum([
-  "asc",
-  "desc",
-]).describe("The direction to order by.");
-
-export type ReorderMetadataFieldsRequest = {
-  order_by: OrderBy;
-  direction?: Direction | undefined;
-};
-
-export const ReorderMetadataFieldsRequest$zodSchema: z.ZodType<
-  ReorderMetadataFieldsRequest
-> = z.object({
-  direction: Direction$zodSchema.optional(),
-  order_by: OrderBy$zodSchema,
-});
-
-/**
- * metadata fields reordered
- */
-export type ReorderMetadataFieldsResponseBody = {
-  metadata_fields?: Array<MetadataField> | undefined;
-};
-
-export const ReorderMetadataFieldsResponseBody$zodSchema: z.ZodType<
-  ReorderMetadataFieldsResponseBody
-> = z.object({
-  metadata_fields: z.array(MetadataField$zodSchema).optional(),
-}).describe("metadata fields reordered");
-
 export type ReorderMetadataFieldsResponse =
   | ApiError
-  | ReorderMetadataFieldsResponseBody;
+  | MetadataFieldsListResponse;
 
 export const ReorderMetadataFieldsResponse$zodSchema: z.ZodType<
   ReorderMetadataFieldsResponse
 > = z.union([
   ApiError$zodSchema,
-  z.lazy(() => ReorderMetadataFieldsResponseBody$zodSchema),
+  MetadataFieldsListResponse$zodSchema,
 ]);
