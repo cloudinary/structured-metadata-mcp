@@ -33,6 +33,10 @@ export type OptionsExp = {
 };
 
 export const OptionsExp$zodSchema: z.ZodType<OptionsExp> = z.object({
-  external_ids: z.array(z.string()).nullable(),
-  mode: OptionsExpMode$zodSchema.default("append"),
+  external_ids: z.array(z.string()).nullable().describe(
+    "Array of external IDs for the enum/set options to activate.",
+  ),
+  mode: OptionsExpMode$zodSchema.default("append").describe(
+    "Whether to override existing options (override) or add to them (append). Default is append.",
+  ),
 }).describe("Specifies which enum/set options to activate.");

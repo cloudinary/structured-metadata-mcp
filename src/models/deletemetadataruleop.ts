@@ -4,6 +4,10 @@
 
 import * as z from "zod";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
+import {
+  SuccessResponse,
+  SuccessResponse$zodSchema,
+} from "./successresponse.js";
 
 export type DeleteMetadataRuleGlobals = { cloud_name?: string | undefined };
 
@@ -24,24 +28,11 @@ export const DeleteMetadataRuleRequest$zodSchema: z.ZodType<
   ),
 });
 
-/**
- * metadata rule deleted.
- */
-export type DeleteMetadataRuleResponseBody = { success: boolean };
-
-export const DeleteMetadataRuleResponseBody$zodSchema: z.ZodType<
-  DeleteMetadataRuleResponseBody
-> = z.object({
-  success: z.boolean(),
-}).describe("metadata rule deleted.");
-
-export type DeleteMetadataRuleResponse =
-  | DeleteMetadataRuleResponseBody
-  | ApiError;
+export type DeleteMetadataRuleResponse = SuccessResponse | ApiError;
 
 export const DeleteMetadataRuleResponse$zodSchema: z.ZodType<
   DeleteMetadataRuleResponse
 > = z.union([
-  z.lazy(() => DeleteMetadataRuleResponseBody$zodSchema),
+  SuccessResponse$zodSchema,
   ApiError$zodSchema,
 ]);

@@ -28,8 +28,16 @@ export const CondExp$zodSchema: z.ZodType<CondExp> = z.object({
   equals: z.union([
     z.string(),
     z.array(z.string()),
-  ]).nullable().optional(),
-  includes: z.array(z.string()).optional(),
-  metadata_field_id: z.string(),
-  populated: z.boolean().optional(),
+  ]).nullable().optional().describe(
+    "The exact value(s) the metadata field should match.",
+  ),
+  includes: z.array(z.string()).optional().describe(
+    "Values that must be included in the metadata field (for set/array fields).",
+  ),
+  metadata_field_id: z.string().describe(
+    "The external ID of the metadata field to evaluate.",
+  ),
+  populated: z.boolean().optional().describe(
+    "Whether the metadata field should have a value (true) or be empty (false).",
+  ),
 }).describe("Atomic condition that evaluates a single metadata field.");

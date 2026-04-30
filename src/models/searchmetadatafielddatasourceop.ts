@@ -4,6 +4,10 @@
 
 import * as z from "zod";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
+import {
+  DatasourceSearchResult,
+  DatasourceSearchResult$zodSchema,
+} from "./datasourcesearchresult.js";
 
 export type SearchMetadataFieldDatasourceGlobals = {
   cloud_name?: string | undefined;
@@ -16,37 +20,13 @@ export const SearchMetadataFieldDatasourceGlobals$zodSchema: z.ZodType<
     .optional(),
 });
 
-export type SearchMetadataFieldDatasourceRequest = {
-  term?: string | undefined;
-  max_results?: number | undefined;
-};
-
-export const SearchMetadataFieldDatasourceRequest$zodSchema: z.ZodType<
-  SearchMetadataFieldDatasourceRequest
-> = z.object({
-  max_results: z.int().default(100),
-  term: z.string().optional(),
-});
-
-export type ResponseBody = {
-  field_id?: string | undefined;
-  id?: string | undefined;
-  value?: string | undefined;
-};
-
-export const ResponseBody$zodSchema: z.ZodType<ResponseBody> = z.object({
-  field_id: z.string().optional(),
-  id: z.string().optional(),
-  value: z.string().optional(),
-});
-
 export type SearchMetadataFieldDatasourceResponse =
   | ApiError
-  | Array<ResponseBody>;
+  | Array<DatasourceSearchResult>;
 
 export const SearchMetadataFieldDatasourceResponse$zodSchema: z.ZodType<
   SearchMetadataFieldDatasourceResponse
 > = z.union([
   ApiError$zodSchema,
-  z.array(z.lazy(() => ResponseBody$zodSchema)).describe("search results"),
+  z.array(DatasourceSearchResult$zodSchema).describe("search results"),
 ]);

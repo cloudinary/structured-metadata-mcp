@@ -19,10 +19,10 @@ import {
 } from "../models/errors/httpclienterrors.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import {
-  ReorderMetadataFieldRequest,
-  ReorderMetadataFieldRequest$zodSchema,
-  ReorderMetadataFieldRequestBody,
+  ReorderMetadataFieldRequestRequest,
+  ReorderMetadataFieldRequestRequest$zodSchema,
 } from "../models/reordermetadatafieldop.js";
+import { ReorderMetadataFieldRequest } from "../models/reordermetadatafieldrequest.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -35,7 +35,7 @@ import { Result } from "../types/fp.js";
 export function metadataFieldsReorderMetadataField(
   client$: CloudinarySMDCore,
   external_id: string,
-  RequestBody: ReorderMetadataFieldRequestBody,
+  reorder_metadata_field_request: ReorderMetadataFieldRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -52,7 +52,7 @@ export function metadataFieldsReorderMetadataField(
   return new APIPromise($do(
     client$,
     external_id,
-    RequestBody,
+    reorder_metadata_field_request,
     options,
   ));
 }
@@ -60,7 +60,7 @@ export function metadataFieldsReorderMetadataField(
 async function $do(
   client$: CloudinarySMDCore,
   external_id: string,
-  RequestBody: ReorderMetadataFieldRequestBody,
+  reorder_metadata_field_request: ReorderMetadataFieldRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -77,21 +77,23 @@ async function $do(
     APICall,
   ]
 > {
-  const input$: ReorderMetadataFieldRequest = {
+  const input$: ReorderMetadataFieldRequestRequest = {
     external_id: external_id,
-    RequestBody: RequestBody,
+    reorder_metadata_field_request: reorder_metadata_field_request,
   };
 
   const parsed$ = safeParse(
     input$,
-    (value$) => ReorderMetadataFieldRequest$zodSchema.parse(value$),
+    (value$) => ReorderMetadataFieldRequestRequest$zodSchema.parse(value$),
     "Input validation failed",
   );
   if (!parsed$.ok) {
     return [parsed$, { status: "invalid" }];
   }
   const payload$ = parsed$.value;
-  const body$ = encodeJSON("body", payload$.RequestBody, { explode: true });
+  const body$ = encodeJSON("body", payload$.reorder_metadata_field_request, {
+    explode: true,
+  });
 
   const pathParams$ = {
     cloud_name: encodeSimple("cloud_name", client$._options.cloud_name, {

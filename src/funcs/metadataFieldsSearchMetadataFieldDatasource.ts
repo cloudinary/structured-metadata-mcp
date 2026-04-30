@@ -9,6 +9,10 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import {
+  DatasourceSearchRequest,
+  DatasourceSearchRequest$zodSchema,
+} from "../models/datasourcesearchrequest.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
@@ -18,10 +22,6 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import {
-  SearchMetadataFieldDatasourceRequest,
-  SearchMetadataFieldDatasourceRequest$zodSchema,
-} from "../models/searchmetadatafielddatasourceop.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -33,7 +33,7 @@ import { Result } from "../types/fp.js";
  */
 export function metadataFieldsSearchMetadataFieldDatasource(
   client$: CloudinarySMDCore,
-  request: SearchMetadataFieldDatasourceRequest,
+  request: DatasourceSearchRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -56,7 +56,7 @@ export function metadataFieldsSearchMetadataFieldDatasource(
 
 async function $do(
   client$: CloudinarySMDCore,
-  request: SearchMetadataFieldDatasourceRequest,
+  request: DatasourceSearchRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -75,7 +75,7 @@ async function $do(
 > {
   const parsed$ = safeParse(
     request,
-    (value$) => SearchMetadataFieldDatasourceRequest$zodSchema.parse(value$),
+    (value$) => DatasourceSearchRequest$zodSchema.parse(value$),
     "Input validation failed",
   );
   if (!parsed$.ok) {

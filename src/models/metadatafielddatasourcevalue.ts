@@ -12,6 +12,8 @@ export type MetadataFieldDatasourceValue = {
 export const MetadataFieldDatasourceValue$zodSchema: z.ZodType<
   MetadataFieldDatasourceValue
 > = z.object({
-  external_id: z.string().optional(),
-  value: z.string().optional(),
+  external_id: z.string().optional().describe(
+    "The external ID of the datasource value.",
+  ),
+  value: z.string().optional().describe("The value of the option."),
 });

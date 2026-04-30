@@ -9,10 +9,10 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import { DatasourceExternalIdsRequest } from "../models/datasourceexternalidsrequest.js";
 import {
   DeleteMetadataFieldDatasourceRequest,
   DeleteMetadataFieldDatasourceRequest$zodSchema,
-  DeleteMetadataFieldDatasourceRequestBody,
 } from "../models/deletemetadatafielddatasourceop.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
@@ -35,7 +35,7 @@ import { Result } from "../types/fp.js";
 export function metadataFieldsDeleteMetadataFieldDatasource(
   client$: CloudinarySMDCore,
   external_id: string,
-  RequestBody: DeleteMetadataFieldDatasourceRequestBody,
+  datasource_external_ids_request: DatasourceExternalIdsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -52,7 +52,7 @@ export function metadataFieldsDeleteMetadataFieldDatasource(
   return new APIPromise($do(
     client$,
     external_id,
-    RequestBody,
+    datasource_external_ids_request,
     options,
   ));
 }
@@ -60,7 +60,7 @@ export function metadataFieldsDeleteMetadataFieldDatasource(
 async function $do(
   client$: CloudinarySMDCore,
   external_id: string,
-  RequestBody: DeleteMetadataFieldDatasourceRequestBody,
+  datasource_external_ids_request: DatasourceExternalIdsRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -79,7 +79,7 @@ async function $do(
 > {
   const input$: DeleteMetadataFieldDatasourceRequest = {
     external_id: external_id,
-    RequestBody: RequestBody,
+    datasource_external_ids_request: datasource_external_ids_request,
   };
 
   const parsed$ = safeParse(
@@ -91,7 +91,9 @@ async function $do(
     return [parsed$, { status: "invalid" }];
   }
   const payload$ = parsed$.value;
-  const body$ = encodeJSON("body", payload$.RequestBody, { explode: true });
+  const body$ = encodeJSON("body", payload$.datasource_external_ids_request, {
+    explode: true,
+  });
 
   const pathParams$ = {
     cloud_name: encodeSimple("cloud_name", client$._options.cloud_name, {

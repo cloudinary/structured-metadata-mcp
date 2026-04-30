@@ -5,9 +5,9 @@
 import * as z from "zod";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
 import {
-  MetadataRuleResponse,
-  MetadataRuleResponse$zodSchema,
-} from "./metadataruleresponse.js";
+  MetadataRulesListResponse,
+  MetadataRulesListResponse$zodSchema,
+} from "./metadataruleslistresponse.js";
 
 export type ListMetadataRulesGlobals = { cloud_name?: string | undefined };
 
@@ -24,26 +24,11 @@ export const ListMetadataRulesRequest$zodSchema: z.ZodType<
   ListMetadataRulesRequest
 > = z.object({});
 
-/**
- * metadata rules retrieved.
- */
-export type ListMetadataRulesResponseBody = {
-  metadata_rules?: Array<MetadataRuleResponse> | undefined;
-};
-
-export const ListMetadataRulesResponseBody$zodSchema: z.ZodType<
-  ListMetadataRulesResponseBody
-> = z.object({
-  metadata_rules: z.array(MetadataRuleResponse$zodSchema).optional(),
-}).describe("metadata rules retrieved.");
-
-export type ListMetadataRulesResponse =
-  | ApiError
-  | ListMetadataRulesResponseBody;
+export type ListMetadataRulesResponse = ApiError | MetadataRulesListResponse;
 
 export const ListMetadataRulesResponse$zodSchema: z.ZodType<
   ListMetadataRulesResponse
 > = z.union([
   ApiError$zodSchema,
-  z.lazy(() => ListMetadataRulesResponseBody$zodSchema),
+  MetadataRulesListResponse$zodSchema,
 ]);

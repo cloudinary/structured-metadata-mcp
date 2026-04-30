@@ -8,10 +8,10 @@ import { MetadataField$zodSchema } from "../../models/metadatafield.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  external_id: z.string().describe(
-    "The external ID of the metadata field to retrieve.",
+  external_id: z.string().describe("The external ID of the metadata field."),
+  metadata_field: MetadataField$zodSchema.describe(
+    `The updated metadata field definition.`,
   ),
-  metadata_field: MetadataField$zodSchema,
 };
 
 export const tool$metadataFieldsUpdateMetadataField: ToolDefinition<

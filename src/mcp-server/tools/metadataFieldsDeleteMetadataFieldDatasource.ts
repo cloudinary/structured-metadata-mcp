@@ -4,14 +4,15 @@
 
 import * as z from "zod";
 import { metadataFieldsDeleteMetadataFieldDatasource } from "../../funcs/metadataFieldsDeleteMetadataFieldDatasource.js";
-import { DeleteMetadataFieldDatasourceRequestBody$zodSchema } from "../../models/deletemetadatafielddatasourceop.js";
+import { DatasourceExternalIdsRequest$zodSchema } from "../../models/datasourceexternalidsrequest.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
   external_id: z.string().describe(
     "The external ID of the metadata field to update the datasource for.",
   ),
-  RequestBody: DeleteMetadataFieldDatasourceRequestBody$zodSchema,
+  datasource_external_ids_request: DatasourceExternalIdsRequest$zodSchema
+    .describe(`The datasource entry external IDs to delete.`),
 };
 
 export const tool$metadataFieldsDeleteMetadataFieldDatasource: ToolDefinition<
@@ -35,7 +36,7 @@ Removes specific values from a metadata field's datasource by their external IDs
     const [result] = await metadataFieldsDeleteMetadataFieldDatasource(
       client,
       args.external_id,
-      args.RequestBody,
+      args.datasource_external_ids_request,
       { fetchOptions: { signal: ctx.signal } },
     ).$inspect();
 

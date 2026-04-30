@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
-import { MetadataField, MetadataField$zodSchema } from "./metadatafield.js";
+import {
+  MetadataFieldsListResponse,
+  MetadataFieldsListResponse$zodSchema,
+} from "./metadatafieldslistresponse.js";
 
 export type ListMetadataFieldsGlobals = { cloud_name?: string | undefined };
 
@@ -27,26 +30,11 @@ export const ListMetadataFieldsRequest$zodSchema: z.ZodType<
   ).optional(),
 });
 
-/**
- * metadata fields retrieved
- */
-export type ListMetadataFieldsResponseBody = {
-  metadata_fields?: Array<MetadataField> | undefined;
-};
-
-export const ListMetadataFieldsResponseBody$zodSchema: z.ZodType<
-  ListMetadataFieldsResponseBody
-> = z.object({
-  metadata_fields: z.array(MetadataField$zodSchema).optional(),
-}).describe("metadata fields retrieved");
-
-export type ListMetadataFieldsResponse =
-  | ApiError
-  | ListMetadataFieldsResponseBody;
+export type ListMetadataFieldsResponse = ApiError | MetadataFieldsListResponse;
 
 export const ListMetadataFieldsResponse$zodSchema: z.ZodType<
   ListMetadataFieldsResponse
 > = z.union([
   ApiError$zodSchema,
-  z.lazy(() => ListMetadataFieldsResponseBody$zodSchema),
+  MetadataFieldsListResponse$zodSchema,
 ]);

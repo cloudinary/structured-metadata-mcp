@@ -4,7 +4,14 @@
 
 import * as z from "zod";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
-import { MetadataField, MetadataField$zodSchema } from "./metadatafield.js";
+import {
+  MetadataFieldsListResponse,
+  MetadataFieldsListResponse$zodSchema,
+} from "./metadatafieldslistresponse.js";
+import {
+  ReorderMetadataFieldRequest,
+  ReorderMetadataFieldRequest$zodSchema,
+} from "./reordermetadatafieldrequest.js";
 
 export type ReorderMetadataFieldGlobals = { cloud_name?: string | undefined };
 
@@ -15,48 +22,28 @@ export const ReorderMetadataFieldGlobals$zodSchema: z.ZodType<
     .optional(),
 });
 
-export type ReorderMetadataFieldRequestBody = { position: number };
-
-export const ReorderMetadataFieldRequestBody$zodSchema: z.ZodType<
-  ReorderMetadataFieldRequestBody
-> = z.object({
-  position: z.int(),
-});
-
-export type ReorderMetadataFieldRequest = {
+export type ReorderMetadataFieldRequestRequest = {
   external_id: string;
-  RequestBody: ReorderMetadataFieldRequestBody;
+  reorder_metadata_field_request: ReorderMetadataFieldRequest;
 };
 
-export const ReorderMetadataFieldRequest$zodSchema: z.ZodType<
-  ReorderMetadataFieldRequest
+export const ReorderMetadataFieldRequestRequest$zodSchema: z.ZodType<
+  ReorderMetadataFieldRequestRequest
 > = z.object({
-  RequestBody: z.lazy(() => ReorderMetadataFieldRequestBody$zodSchema),
   external_id: z.string().describe(
     "The external ID of the metadata field to reorder.",
   ),
+  reorder_metadata_field_request: ReorderMetadataFieldRequest$zodSchema
+    .describe("The new position for the metadata field."),
 });
-
-/**
- * metadata fields reordered
- */
-export type ReorderMetadataFieldResponseBody = {
-  metadata_fields?: Array<MetadataField> | undefined;
-};
-
-export const ReorderMetadataFieldResponseBody$zodSchema: z.ZodType<
-  ReorderMetadataFieldResponseBody
-> = z.object({
-  metadata_fields: z.array(MetadataField$zodSchema).optional(),
-}).describe("metadata fields reordered");
 
 export type ReorderMetadataFieldResponse =
   | ApiError
-  | ReorderMetadataFieldResponseBody;
+  | MetadataFieldsListResponse;
 
 export const ReorderMetadataFieldResponse$zodSchema: z.ZodType<
   ReorderMetadataFieldResponse
 > = z.union([
   ApiError$zodSchema,
-  z.lazy(() => ReorderMetadataFieldResponseBody$zodSchema),
+  MetadataFieldsListResponse$zodSchema,
 ]);

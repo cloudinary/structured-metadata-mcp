@@ -56,7 +56,9 @@ export type ValueExp = {
 };
 
 export const ValueExp$zodSchema: z.ZodType<ValueExp> = z.object({
-  mode: ValueExpMode$zodSchema.default("default"),
+  mode: ValueExpMode$zodSchema.default("default").describe(
+    "Whether to set as default value (default) or append to existing values (append). Default is default.",
+  ),
   value: z.union([
     z.string(),
     z.number(),
@@ -64,5 +66,7 @@ export const ValueExp$zodSchema: z.ZodType<ValueExp> = z.object({
       z.string(),
       z.number(),
     ])),
-  ]),
+  ]).describe(
+    "The value(s) to apply to the metadata field. Can be string, number, or array of strings/numbers depending on the field type.",
+  ),
 }).describe("Specifies a value to apply to the metadata field.");

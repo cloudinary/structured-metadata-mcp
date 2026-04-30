@@ -3,11 +3,13 @@
  */
 
 import { metadataFieldsCreateMetadataField } from "../../funcs/metadataFieldsCreateMetadataField.js";
-import { MetadataField$zodSchema } from "../../models/metadatafield.js";
+import { CreateMetadataFieldRequest$zodSchema } from "../../models/createmetadatafieldop.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  request: MetadataField$zodSchema,
+  request: CreateMetadataFieldRequest$zodSchema.describe(
+    `The metadata field definition.`,
+  ),
 };
 
 export const tool$metadataFieldsCreateMetadataField: ToolDefinition<

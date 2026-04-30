@@ -46,8 +46,16 @@ export const ActionExp$zodSchema: z.ZodType<ActionExp> = z.object({
   activate_values: z.union([
     OptionsExp$zodSchema,
     ActivateValuesEnum$zodSchema,
-  ]).optional(),
-  apply_value: ValueExp$zodSchema.optional(),
-  enable: z.boolean().optional(),
-  set_mandatory: z.boolean().optional(),
+  ]).optional().describe(
+    "Controls which enum/set options are available for selection.",
+  ),
+  apply_value: ValueExp$zodSchema.optional().describe(
+    "Specifies a value to apply to the metadata field.",
+  ),
+  enable: z.boolean().optional().describe(
+    "Whether to enable (true) or disable (false) the metadata field when the condition is met.",
+  ),
+  set_mandatory: z.boolean().optional().describe(
+    "Whether to make the metadata field required (true) or optional (false).",
+  ),
 }).describe("The result/action to apply when the condition is met.");

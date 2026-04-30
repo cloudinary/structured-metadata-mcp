@@ -5,6 +5,10 @@
 import * as z from "zod";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
 import {
+  DatasourceSearchInFieldRequest,
+  DatasourceSearchInFieldRequest$zodSchema,
+} from "./datasourcesearchinfieldrequest.js";
+import {
   MetadataFieldDatasourceValuesArray,
   MetadataFieldDatasourceValuesArray$zodSchema,
 } from "./metadatafielddatasourcevaluesarray.js";
@@ -20,37 +24,19 @@ export const SearchDatasourceInMDFieldGlobals$zodSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * Metadata payload for rule-based inference
- */
-export type Payload = {};
-
-export const Payload$zodSchema: z.ZodType<Payload> = z.object({}).describe(
-  "Metadata payload for rule-based inference",
-);
-
-export type SearchDatasourceInMDFieldRequestBody = {
-  payload?: Payload | undefined;
-};
-
-export const SearchDatasourceInMDFieldRequestBody$zodSchema: z.ZodType<
-  SearchDatasourceInMDFieldRequestBody
-> = z.object({
-  payload: z.lazy(() => Payload$zodSchema).optional(),
-});
-
 export type SearchDatasourceInMDFieldRequest = {
   external_id: string;
   max_results?: number | undefined;
   term?: string | undefined;
   exact_match?: boolean | undefined;
-  RequestBody: SearchDatasourceInMDFieldRequestBody;
+  datasource_search_in_field_request: DatasourceSearchInFieldRequest;
 };
 
 export const SearchDatasourceInMDFieldRequest$zodSchema: z.ZodType<
   SearchDatasourceInMDFieldRequest
 > = z.object({
-  RequestBody: z.lazy(() => SearchDatasourceInMDFieldRequestBody$zodSchema),
+  datasource_search_in_field_request: DatasourceSearchInFieldRequest$zodSchema
+    .describe("The datasource search query for this field."),
   exact_match: z.boolean().default(false).describe(
     "Whether to search for an exact match.",
   ),

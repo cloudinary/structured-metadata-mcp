@@ -5,6 +5,10 @@
 import * as z from "zod";
 import { ApiError, ApiError$zodSchema } from "./apierror.js";
 import {
+  DatasourceExternalIdsRequest,
+  DatasourceExternalIdsRequest$zodSchema,
+} from "./datasourceexternalidsrequest.js";
+import {
   MetadataFieldDatasourceValuesArray,
   MetadataFieldDatasourceValuesArray$zodSchema,
 } from "./metadatafielddatasourcevaluesarray.js";
@@ -20,25 +24,16 @@ export const DeleteMetadataFieldDatasourceGlobals$zodSchema: z.ZodType<
     .optional(),
 });
 
-export type DeleteMetadataFieldDatasourceRequestBody = {
-  external_ids: Array<string>;
-};
-
-export const DeleteMetadataFieldDatasourceRequestBody$zodSchema: z.ZodType<
-  DeleteMetadataFieldDatasourceRequestBody
-> = z.object({
-  external_ids: z.array(z.string()),
-});
-
 export type DeleteMetadataFieldDatasourceRequest = {
   external_id: string;
-  RequestBody: DeleteMetadataFieldDatasourceRequestBody;
+  datasource_external_ids_request: DatasourceExternalIdsRequest;
 };
 
 export const DeleteMetadataFieldDatasourceRequest$zodSchema: z.ZodType<
   DeleteMetadataFieldDatasourceRequest
 > = z.object({
-  RequestBody: z.lazy(() => DeleteMetadataFieldDatasourceRequestBody$zodSchema),
+  datasource_external_ids_request: DatasourceExternalIdsRequest$zodSchema
+    .describe("The datasource entry external IDs to delete."),
   external_id: z.string().describe(
     "The external ID of the metadata field to update the datasource for.",
   ),

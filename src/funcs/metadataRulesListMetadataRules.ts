@@ -22,7 +22,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Retrieves a list of all conditional metadata rules defined in your accountcloudinary
+ * Retrieves a list of all conditional metadata rules defined in your account
  *
  * @remarks
  * Retrieves a list of all metadata rules in the cloud.
