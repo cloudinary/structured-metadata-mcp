@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: cce51212-9f48-488d-9ded-b8a6fac39957
 management:
-  docChecksum: cf1dd98292170ae86b9dd82603a00442
-  docVersion: 0.5.0
-  speakeasyVersion: 1.761.10
-  generationVersion: 2.881.16
-  releaseVersion: 0.5.0
-  configChecksum: 6a4b83610c89a26954d3eebd6a40b1a7
+  docChecksum: 188eb722bb93f4242ac79e556474fefe
+  docVersion: 0.5.5
+  speakeasyVersion: 1.788.1
+  generationVersion: 2.915.1
+  releaseVersion: 0.6.0
+  configChecksum: 74228fdf9968aa2c8b559a4b9acc83c6
   repoURL: https://github.com/cloudinary/structured-metadata-mcp.git
   installationURL: https://github.com/cloudinary/structured-metadata-mcp
   published: true
 persistentEdits:
-  generation_id: 858a4ad8-b668-4a29-9401-094d4d7af020
-  pristine_commit_hash: c93f6d139ecdb52d1de1d3d0a453f55d82a3044c
-  pristine_tree_hash: 82e6bc27979dce6bcbd5bf0e144b6020d1de7ee6
+  generation_id: f302f936-a0e5-490c-984a-b56eb6d32d2c
+  pristine_commit_hash: 49675ec4c48f2ab3a6b5e115dea89801e7eb0151
+  pristine_tree_hash: b335964cbba299f457a38436200c3d761603e52a
 features:
   mcp-typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.2
-    core: 1.2.27
+    core: 1.3.5
     customSecuritySchemes: 0.1.1
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
@@ -30,7 +30,7 @@ features:
     hiddenGlobals: 0.1.0
     nullables: 0.1.0
     responseFormat: 0.1.1
-    retries: 0.1.0
+    retries: 0.1.1
     sdkHooks: 0.3.0
     unions: 0.2.0
 trackedFiles:
@@ -52,12 +52,12 @@ trackedFiles:
     pristine_git_object: 4f9e60a9462fc4def738d60c3aaadf8232ef185f
   manifest.json:
     id: ca642a226869
-    last_write_checksum: sha1:91f6a72db84046bc1d5af60381f169d1bf5b449a
-    pristine_git_object: ff8cb4008e30eda000903e55866679ae11925358
+    last_write_checksum: sha1:6af0b5ba67279eb6ab2c839f3b43baba39396404
+    pristine_git_object: e977d13eeaafe47d4179cb97a8a24244fc0342f0
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:b84df8d6f925fbf0fddc1567b67af0c0b295b854
-    pristine_git_object: 84448549c30ea25880a1ed27a303b803b82f5c84
+    last_write_checksum: sha1:7349cd0a3d81d646a052f8a3c774323d9aedd41c
+    pristine_git_object: 9e68f27929d104a34ac6cebbddbda55dabedd804
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:c3eb278d60e337fa723f4dea4358394b5e39e0fa
@@ -140,28 +140,24 @@ trackedFiles:
     pristine_git_object: 9c36bf01332084f735909a71036c3544cc4c7e3a
   src/landing-page.ts:
     id: ef64a6ee46d7
-    last_write_checksum: sha1:368bf559e70601b5ec5c5b65abe2366fb47176e6
-    pristine_git_object: d6c164dda3dd1fe95b12001d004a9b7bc8b4c29d
+    last_write_checksum: sha1:c2cc9f965c8b9044c1dab990807545607eb71da7
+    pristine_git_object: 803a26046ee1f16c27abaff36edc6faffa92389b
   src/lib/base64.ts:
     id: "598522066688"
     last_write_checksum: sha1:e9f04a037018040361043104960982f7c22db52d
     pristine_git_object: d4bd8b341290e7a828a171d840bd0b0fff7c7cd7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:4efe9f8eb4afc26ef4c02781b3883ff6bb600755
-    pristine_git_object: 81816e8b0a80add3f50e6c23adb2c928ad77dc7c
-  src/lib/dlv.ts:
-    id: b1988214835a
-    last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
-    pristine_git_object: e81091f5e536f82739f71379b1fddc2d147c49e2
+    last_write_checksum: sha1:94db5774fa16967a58d7f4b5ddb126eea7f3a8db
+    pristine_git_object: 7553a0e4b21ab12caaccd14230f6b899d2787785
   src/lib/encodings.ts:
     id: 3bd8ead98afd
-    last_write_checksum: sha1:2bac07b55d30cf8618729e656b8becffc315fbdb
-    pristine_git_object: caa16bb379e5680ab114b44f6e3e5f0a2c836be3
+    last_write_checksum: sha1:9b859366c917d31f7ee533176f71631872fb05fa
+    pristine_git_object: b19d1d002d9ec04f027250253ea9780ae7fd98c3
   src/lib/env.ts:
     id: c52972a3b198
-    last_write_checksum: sha1:69b6f701c443133139651cf64fbd54fe2bc5357f
-    pristine_git_object: 40c8651cc97a272072ea6c5a1b4d2ab086f07e70
+    last_write_checksum: sha1:ffcbb6530c081321ccd7818c4fd432b176a5150e
+    pristine_git_object: 6f2ee7ca0ccdf2518367715c9a0550c8c8a69a44
   src/lib/files.ts:
     id: e5efa54fcb95
     last_write_checksum: sha1:795c14026405d547bfc47012f7ad9666e530fa7f
@@ -170,26 +166,22 @@ trackedFiles:
     id: 63a80782d37e
     last_write_checksum: sha1:797cbf16d3c7c4d62d3ba0eedb08617524938457
     pristine_git_object: 13cf1fd7894a89f727b8d2db2ad24313a94f68c7
-  src/lib/is-plain-object.ts:
-    id: b9862591096a
-    last_write_checksum: sha1:df687f25a9590b6fd95d39df41a652ae3fd4e517
-    pristine_git_object: 61070d3d7c7e5e95b1ed7e7ea21869eb0767db77
   src/lib/logger.ts:
     id: 7ee7741a02bf
     last_write_checksum: sha1:0ec9d3a2a34c362746b767e4f9a746c055d57a7b
     pristine_git_object: d181f2937d4128afbe9b0327e0f81d1fa9c877b7
   src/lib/primitives.ts:
     id: 74859f750b28
-    last_write_checksum: sha1:d5fbb4e2feef5747fc8071046bdd4122c87bd066
-    pristine_git_object: 668ab9d500d77bee730a619c5fda4a1d3cd1d16c
+    last_write_checksum: sha1:6f2cc1b00581006b4f70a853467df8cae81bc483
+    pristine_git_object: 13567e79658831eeb0c696cf5982a170aa7e213a
   src/lib/result.ts:
     id: ab7a4c1c4c71
     last_write_checksum: sha1:d24994d58f37a1ca106847fcc6d2e976c6f1c093
     pristine_git_object: ccbe51eac69dfb0da5131f14fd753c4b47c1d527
   src/lib/retries.ts:
     id: b24a69d15639
-    last_write_checksum: sha1:f3da74dffcbe2756c69393f8600205aa1dc06e68
-    pristine_git_object: e3ce9aba72150fc3c18f3105d39b21aba809377b
+    last_write_checksum: sha1:42c8f6cc4c875be236230a8c760f4f32d8c1ab68
+    pristine_git_object: 21a647e1e9ae64817fcd63b5dd6bb5a51b63d225
   src/lib/schemas.ts:
     id: deb4b531fae1
     last_write_checksum: sha1:7c7ba40781682f6d44bb585b5016e2527b52660e
@@ -244,8 +236,8 @@ trackedFiles:
     pristine_git_object: 441c1ce08678d15726f06f8692d00bd4f8daa5c0
   src/mcp-server/mcp-server.ts:
     id: aabbc4ab07c1
-    last_write_checksum: sha1:e39022de05b5a9abe737a429cdc9c1b4b5352c1e
-    pristine_git_object: d4af9d46cc8782e68b775591fe1d7aa7a6df84b6
+    last_write_checksum: sha1:18d6f1dfaa22d75d8594d97642a77b10d51cabc6
+    pristine_git_object: 68d8c1cbf342d3654ef085a279f96f4222850101
   src/mcp-server/prompts.ts:
     id: 26f3d73cbf31
     last_write_checksum: sha1:5ebf7a729762b1cd90afccecc101663b9905d181
@@ -260,16 +252,16 @@ trackedFiles:
     pristine_git_object: bc628748008f07f8d0fd75220d5015c46817b946
   src/mcp-server/server.ts:
     id: 2784dd48e82a
-    last_write_checksum: sha1:1e6cc742152400161883d2961472ba835fef98c6
-    pristine_git_object: 7be0d25a927526f804a88d0d2fbdb3a1b26fef7a
+    last_write_checksum: sha1:576a9ea4697461dab3f7c05b5e19d17e3fa75299
+    pristine_git_object: 2c18887f6628ad019113ae705b9b10ec44236336
   src/mcp-server/shared.ts:
     id: 074e80d4be1e
     last_write_checksum: sha1:19c9034032819a14f15c430de4350c8aba99d725
     pristine_git_object: bb74a74788ebd7d11262f5f63b8fdd29ab817f48
   src/mcp-server/tools.ts:
     id: 654d5d1f2062
-    last_write_checksum: sha1:6028db1b23819165034617aad12f975a49a79e8a
-    pristine_git_object: df749737c868dfed77f14277b9d8dcadd0d4a7ff
+    last_write_checksum: sha1:ea1da7063967e24380790b1f3d44b2fdf75846e7
+    pristine_git_object: c5158f179e00124e84e0abdf9f8b1fad8bc674f3
   src/mcp-server/tools/metadataFieldsCreateMetadataField.ts:
     id: faf8adfc68d8
     last_write_checksum: sha1:863fa224183143a0d18f8245b17aefabea18cf6d
@@ -328,8 +320,8 @@ trackedFiles:
     pristine_git_object: cc0f4506eda169011bb7419ce94f30c88cbd2b90
   src/models/createmetadatafieldop.ts:
     id: 22e1b361a5ea
-    last_write_checksum: sha1:9832344c0f1a84b7c7d5358ec42968170ab59a4f
-    pristine_git_object: ade6697e33635a8f149fc991c511b8b12c779945
+    last_write_checksum: sha1:a0e134c96f8c9ba56104372984ff8a0a1a34f596
+    pristine_git_object: f2564387535e1d2a6b857771f27d337609fd76c3
   src/models/createmetadataruleop.ts:
     id: a04504005165
     last_write_checksum: sha1:6de29a09fe04e3bcaf86b4eb574d818662c6c712
@@ -404,8 +396,8 @@ trackedFiles:
     pristine_git_object: ff1413093657cd37b449eb4c693f7a7ae30dc707
   src/models/metadatafield.ts:
     id: 23e37dbac746
-    last_write_checksum: sha1:4c56ce67ea772c9158332dc234eecd38628dd801
-    pristine_git_object: ddda27ac3a9b84d483c136a713deba7d066d0bb7
+    last_write_checksum: sha1:1113e639fb7e84699f53dd22e93d8ca1ff90fffa
+    pristine_git_object: e0b8a4e9541dda0e800e941d1c92976173697e3f
   src/models/metadatafielddatasourcevalue.ts:
     id: 51c7e4cb8022
     last_write_checksum: sha1:f1d755b14d1a7fc4c22c971b94a928904976c743
@@ -512,12 +504,12 @@ trackedFiles:
     pristine_git_object: 83747003545feab99943372c90a4bce0c2806fb0
   src/types/async.ts:
     id: fac8da972f86
-    last_write_checksum: sha1:3ff07b3feaf390ec1aeb18ff938e139c6c4a9585
-    pristine_git_object: 689dba5de50e8769e5f3bb913e3f42a146d15bc1
+    last_write_checksum: sha1:675d04bb4b4081dc3482f18de98674f9b446e7b4
+    pristine_git_object: 1543b95cf7be9b5a871d7395f259dbd65331dc21
   src/types/bigint.ts:
     id: 3ca6e3280e43
-    last_write_checksum: sha1:58178437a7d38f022b5d9bef691ba5539fad4655
-    pristine_git_object: f32ee5fe6a2dbf82bd2d1ec7c17cd2987bcff1d6
+    last_write_checksum: sha1:ebf6d4b27fc3aa7ff76dbedae9a19fb7f39e5dc7
+    pristine_git_object: 91c22c4052617269c44ed145d678d39d8eb24a4d
   src/types/blobs.ts:
     id: f8ab9b326c86
     last_write_checksum: sha1:9cc86e0e9420999afb48d53c57d71584be745fd7
@@ -549,10 +541,10 @@ examples:
         path:
           cloud_name: "<value>"
       requestBody:
-        application/json: {"type": "set", "label": "<value>"}
+        application/json: {"type": "set", "label": "<value>", "alphabetically_sorted": true}
       responses:
         "200":
-          application/json: {}
+          application/json: {"alphabetically_sorted": true}
         "400":
           application/json: {"error": {"message": "<value>"}}
   listMetadataFields:
@@ -562,7 +554,7 @@ examples:
           cloud_name: "<value>"
       responses:
         "200":
-          application/json: {}
+          application/json: {"metadata_fields": [{"alphabetically_sorted": true}]}
         "401":
           application/json: {"error": {"message": "<value>"}}
   getMetadataField:
@@ -573,7 +565,7 @@ examples:
           cloud_name: "<value>"
       responses:
         "200":
-          application/json: {}
+          application/json: {"alphabetically_sorted": true}
         "401":
           application/json: {"error": {"message": "<value>"}}
   updateMetadataField:
@@ -583,10 +575,10 @@ examples:
           external_id: "<id>"
           cloud_name: "<value>"
       requestBody:
-        application/json: {}
+        application/json: {"alphabetically_sorted": true}
       responses:
         "200":
-          application/json: {}
+          application/json: {"alphabetically_sorted": true}
         "400":
           application/json: {"error": {"message": "<value>"}}
   deleteMetadataField:
@@ -621,7 +613,7 @@ examples:
         application/json: {"order_by": "external_id"}
       responses:
         "200":
-          application/json: {}
+          application/json: {"metadata_fields": [{"alphabetically_sorted": true}]}
         "400":
           application/json: {"error": {"message": "<value>"}}
   reorderMetadataField:
@@ -634,7 +626,7 @@ examples:
         application/json: {"position": 33651}
       responses:
         "200":
-          application/json: {}
+          application/json: {"metadata_fields": [{"alphabetically_sorted": true}]}
         "400":
           application/json: {"error": {"message": "<value>"}}
   updateMetadataFieldDatasource:
@@ -698,10 +690,10 @@ examples:
         path:
           cloud_name: "<value>"
       requestBody:
-        application/json: {"metadata_field_id": "smd-field-1", "name": "My Rule", "condition": {"metadata_field_id": "smd-field-2", "populated": true}, "result": {"apply_value": {"value": "my value", "mode": "default"}}, "state": "active", "position": 1}
+        application/json: {"metadata_field_id": "smd-field-1", "name": "Disable field when other field is populated", "condition": {"metadata_field_id": "smd-field-2", "populated": true}, "result": {}, "state": "active", "position": 1}
       responses:
         "200":
-          application/json: {"metadata_field_id": "smd-field-1", "name": "My Rule", "condition": {"metadata_field_id": "smd-field-2", "populated": true}, "result": {"apply_value": {"value": "my value", "mode": "default"}}, "state": "active", "position": 1, "external_id": "1234567890", "condition_signature": "dGhlIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2c"}
+          application/json: {"metadata_field_id": "smd-field-1", "name": "Disable field when other field is populated", "condition": {"metadata_field_id": "smd-field-2", "populated": true}, "result": {}, "state": "active", "position": 1, "external_id": "1234567890", "condition_signature": "dGhlIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2c"}
         "400":
           application/json: {"error": {"message": "<value>"}}
   listMetadataRules:
@@ -721,10 +713,10 @@ examples:
           external_id: "<id>"
           cloud_name: "<value>"
       requestBody:
-        application/json: {"metadata_field_id": "smd-field-1", "name": "My Rule", "condition": {"metadata_field_id": "smd-field-2", "populated": true}, "result": {"apply_value": {"value": "my value", "mode": "default"}}, "state": "active", "position": 1}
+        application/json: {"metadata_field_id": "smd-field-1", "name": "Disable field when other field is populated", "condition": {"metadata_field_id": "smd-field-2", "populated": true}, "result": {}, "state": "active", "position": 1}
       responses:
         "200":
-          application/json: {"metadata_field_id": "smd-field-1", "name": "My Rule", "condition": {"metadata_field_id": "smd-field-2", "populated": true}, "result": {"apply_value": {"value": "my value", "mode": "default"}}, "state": "active", "position": 1, "external_id": "1234567890", "condition_signature": "dGhlIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2c"}
+          application/json: {"metadata_field_id": "smd-field-1", "name": "Disable field when other field is populated", "condition": {"metadata_field_id": "smd-field-2", "populated": true}, "result": {}, "state": "active", "position": 1, "external_id": "1234567890", "condition_signature": "dGhlIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2c"}
         "400":
           application/json: {"error": {"message": "<value>"}}
   deleteMetadataRule:
@@ -739,7 +731,7 @@ examples:
         "400":
           application/json: {"error": {"message": "<value>"}}
 examplesVersion: 1.0.2
-releaseNotes: "## Mcp-typescript SDK Changes:\n* `CloudinarySMD.metadata_fields.createMetadataField()`: \n  *  `request.validation` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `CloudinarySMD.metadata_fields.listMetadataFields()`:  `response.metadata_fields[]` **Changed** (Breaking ⚠️)\n* `CloudinarySMD.metadata_fields.getMetadataField()`:  `response` **Changed** (Breaking ⚠️)\n* `CloudinarySMD.metadata_fields.updateMetadataField()`: \n  *  `request.metadata_field` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `CloudinarySMD.metadata_fields.updateMetadataFieldDatasource()`:  `request` **Changed** (Breaking ⚠️)\n* `CloudinarySMD.metadata_fields.deleteMetadataFieldDatasource()`:  `request` **Changed** (Breaking ⚠️)\n"
+releaseNotes: "## Mcp-typescript SDK Changes:\n* `CloudinarySMD.metadata_fields.createMetadataField()`: \n  *  `request` **Changed**\n  *  `response` **Changed**\n* `CloudinarySMD.metadata_fields.listMetadataFields()`:  `response.metadata_fields[]` **Changed**\n* `CloudinarySMD.metadata_fields.getMetadataField()`:  `response` **Changed**\n* `CloudinarySMD.metadata_fields.updateMetadataField()`: \n  *  `request.metadata_field` **Changed**\n  *  `response` **Changed**\n"
 generatedFiles:
   - .dxtignore
   - .gitattributes
