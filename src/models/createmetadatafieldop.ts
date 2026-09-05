@@ -8,15 +8,6 @@ import { ApiError, ApiError$zodSchema } from "./apierror.js";
 import { MetadataField, MetadataField$zodSchema } from "./metadatafield.js";
 import { StateEnum, StateEnum$zodSchema } from "./stateenum.js";
 
-export type CreateMetadataFieldGlobals = { cloud_name?: string | undefined };
-
-export const CreateMetadataFieldGlobals$zodSchema: z.ZodType<
-  CreateMetadataFieldGlobals
-> = z.object({
-  cloud_name: z.string().describe("The cloud name of your product environment.")
-    .optional(),
-});
-
 /**
  * The type of the metadata field.
  */
@@ -42,6 +33,15 @@ export const CreateMetadataFieldType$zodSchema = z.enum([
   "set",
 ]).describe("The type of the metadata field.");
 
+export type CreateMetadataFieldGlobals = { cloud_name?: string | undefined };
+
+export const CreateMetadataFieldGlobals$zodSchema: z.ZodType<
+  CreateMetadataFieldGlobals
+> = z.object({
+  cloud_name: z.string().describe("The cloud name of your product environment.")
+    .optional(),
+});
+
 /**
  * The default value of the metadata field.
  */
@@ -55,19 +55,31 @@ export const CreateMetadataFieldDefaultValue$zodSchema: z.ZodType<
 ]).describe("The default value of the metadata field.");
 
 /**
- * The restrictions defined for the metadata field.
+ * Controls UI visibility and editability of the field. All three keys are always returned; any omitted key on input defaults to false.
+ *
+ * @remarks
  */
 export type CreateMetadataFieldRestrictions = {
   readonly_ui?: boolean | undefined;
+  hidden_ui?: boolean | undefined;
+  excluded_from_search?: boolean | undefined;
 };
 
 export const CreateMetadataFieldRestrictions$zodSchema: z.ZodType<
   CreateMetadataFieldRestrictions
 > = z.object({
-  readonly_ui: z.boolean().optional().describe(
-    "Whether the metadata field is read-only in the UI. when true, the metadata field can only be updated via the API.",
+  excluded_from_search: z.boolean().optional().describe(
+    "Whether the field is excluded from UI search by default.",
   ),
-}).describe("The restrictions defined for the metadata field.");
+  hidden_ui: z.boolean().optional().describe(
+    "Whether the field is hidden in the UI by default.",
+  ),
+  readonly_ui: z.boolean().optional().describe(
+    "Whether the field is read-only in the UI. When true, the field can only be updated via the API.",
+  ),
+}).describe(
+  "Controls UI visibility and editability of the field. All three keys are always returned; any omitted key on input defaults to false.\n",
+);
 
 export type CreateMetadataFieldValue = {
   external_id?: string | undefined;
@@ -114,6 +126,7 @@ export type CreateMetadataFieldRequest = {
   restrictions?: CreateMetadataFieldRestrictions | null | undefined;
   datasource?: CreateMetadataFieldDatasource | null | undefined;
   allow_dynamic_list_values?: boolean | null | undefined;
+  alphabetically_sorted?: boolean | undefined;
 };
 
 export const CreateMetadataFieldRequest$zodSchema: z.ZodType<
@@ -122,10 +135,13 @@ export const CreateMetadataFieldRequest$zodSchema: z.ZodType<
   allow_dynamic_list_values: z.boolean().nullable().optional().describe(
     "Whether the metadata field allows adding new options to the datasource dynamically.",
   ),
+  alphabetically_sorted: z.boolean().optional().describe(
+    "Whether datasource values are maintained in case-insensitive alphabetical order. When true, values are automatically sorted on insert and update. Default false.",
+  ),
   datasource: z.lazy(() => CreateMetadataFieldDatasource$zodSchema).nullable()
     .optional().describe("The datasource defined for the metadata field."),
   default_disabled: z.boolean().nullable().optional().describe(
-    "Whether the default value is disabled.",
+    "Whether the field is disabled in the UI by default.",
   ),
   default_value: z.union([
     z.string(),
@@ -140,7 +156,7 @@ export const CreateMetadataFieldRequest$zodSchema: z.ZodType<
   ),
   restrictions: z.lazy(() => CreateMetadataFieldRestrictions$zodSchema)
     .nullable().optional().describe(
-      "The restrictions defined for the metadata field.",
+      "Controls UI visibility and editability of the field. All three keys are always returned; any omitted key on input defaults to false.\n",
     ),
   type: CreateMetadataFieldType$zodSchema.describe(
     "The type of the metadata field.",

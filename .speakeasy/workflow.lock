@@ -1,18 +1,18 @@
-speakeasyVersion: 1.761.10
+speakeasyVersion: 1.796.4
 sources:
     CloudinarySMD-MCP-OAS:
         sourceNamespace: cloudinary-structured-metadata-mcp-oas
-        sourceRevisionDigest: sha256:85c63199be6e15b3d6b3d16a16e2c33690a4dc147f2e48dc453b20a5fbf5ec43
-        sourceBlobDigest: sha256:eb5e17fde26cf563d32221dfa8dc025a27f13caf100005f1871c0891263f45e8
+        sourceRevisionDigest: sha256:100a218d96e6f4ff65d669e52b204abb0a157e75a948a8aa4e0c432b70c435bc
+        sourceBlobDigest: sha256:2090fcbd214524692bd0f0ae9e58a46541d739dbc63f17c5fba6b4bd357fbd37
         tags:
             - latest
-            - 0.5.0
+            - 0.5.5
 targets:
     cloudinary-structured-metadata-mcp:
         source: CloudinarySMD-MCP-OAS
         sourceNamespace: cloudinary-structured-metadata-mcp-oas
-        sourceRevisionDigest: sha256:85c63199be6e15b3d6b3d16a16e2c33690a4dc147f2e48dc453b20a5fbf5ec43
-        sourceBlobDigest: sha256:eb5e17fde26cf563d32221dfa8dc025a27f13caf100005f1871c0891263f45e8
+        sourceRevisionDigest: sha256:100a218d96e6f4ff65d669e52b204abb0a157e75a948a8aa4e0c432b70c435bc
+        sourceBlobDigest: sha256:2090fcbd214524692bd0f0ae9e58a46541d739dbc63f17c5fba6b4bd357fbd37
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
