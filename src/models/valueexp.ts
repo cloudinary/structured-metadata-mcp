@@ -5,6 +5,25 @@
 import * as z from "zod";
 import { ClosedEnum } from "../types/enums.js";
 
+/**
+ * Whether to set as default value (default) or append to existing values (append). Default is default.
+ */
+export const ValueExpMode = {
+  Default: "default",
+  Append: "append",
+} as const;
+/**
+ * Whether to set as default value (default) or append to existing values (append). Default is default.
+ */
+export type ValueExpMode = ClosedEnum<typeof ValueExpMode>;
+
+export const ValueExpMode$zodSchema = z.enum([
+  "default",
+  "append",
+]).describe(
+  "Whether to set as default value (default) or append to existing values (append). Default is default.",
+);
+
 export type ValueUnion1 = string | number;
 
 export const ValueUnion1$zodSchema: z.ZodType<ValueUnion1> = z.union([
@@ -26,25 +45,6 @@ export const ValueUnion2$zodSchema: z.ZodType<ValueUnion2> = z.union([
   ])),
 ]).describe(
   "The value(s) to apply to the metadata field. Can be string, number, or array of strings/numbers depending on the field type.",
-);
-
-/**
- * Whether to set as default value (default) or append to existing values (append). Default is default.
- */
-export const ValueExpMode = {
-  Default: "default",
-  Append: "append",
-} as const;
-/**
- * Whether to set as default value (default) or append to existing values (append). Default is default.
- */
-export type ValueExpMode = ClosedEnum<typeof ValueExpMode>;
-
-export const ValueExpMode$zodSchema = z.enum([
-  "default",
-  "append",
-]).describe(
-  "Whether to set as default value (default) or append to existing values (append). Default is default.",
 );
 
 /**
