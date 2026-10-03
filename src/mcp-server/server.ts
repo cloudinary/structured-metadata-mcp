@@ -45,7 +45,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CloudinarySMD",
-    version: "0.5.0",
+    version: "0.6.0",
   });
 
   const getClient = deps.getSDK || (() =>
