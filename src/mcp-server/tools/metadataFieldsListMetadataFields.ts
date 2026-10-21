@@ -34,7 +34,7 @@ Retrieves a list of all metadata fields in the product environment based on the 
     const [result] = await metadataFieldsListMetadataFields(
       client,
       args.external_ids,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

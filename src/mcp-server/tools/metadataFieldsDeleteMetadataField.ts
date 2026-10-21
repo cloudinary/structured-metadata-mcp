@@ -31,7 +31,7 @@ Permanently deletes the specified metadata field and all its associated data.`,
     const [result] = await metadataFieldsDeleteMetadataField(
       client,
       args.external_id,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {
