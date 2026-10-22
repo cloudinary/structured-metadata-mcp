@@ -1,4 +1,4 @@
-speakeasyVersion: 1.800.1
+speakeasyVersion: 1.803.1
 sources:
     CloudinarySMD-MCP-OAS:
         sourceNamespace: cloudinary-structured-metadata-mcp-oas

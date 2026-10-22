@@ -38,7 +38,7 @@ Removes specific values from a metadata field's datasource by their external IDs
       client,
       args.external_id,
       args.datasource_external_ids_request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

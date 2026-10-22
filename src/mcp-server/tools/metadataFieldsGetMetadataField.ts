@@ -31,7 +31,7 @@ Retrieves detailed information about the specified metadata field.`,
       const [result] = await metadataFieldsGetMetadataField(
         client,
         args.external_id,
-        { fetchOptions: { signal: ctx.signal } },
+        { fetchOptions: { signal: ctx.mcpReq.signal } },
       ).$inspect();
 
       if (!result.ok) {

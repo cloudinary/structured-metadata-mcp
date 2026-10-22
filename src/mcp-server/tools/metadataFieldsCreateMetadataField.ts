@@ -33,7 +33,7 @@ Creates a new metadata field with the specified properties and configuration.`,
     const [result] = await metadataFieldsCreateMetadataField(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {
