@@ -32,7 +32,7 @@ Permanently deletes a metadata rule.`,
       const [result] = await metadataRulesDeleteMetadataRule(
         client,
         args.external_id,
-        { fetchOptions: { signal: ctx.signal } },
+        { fetchOptions: { signal: ctx.mcpReq.signal } },
       ).$inspect();
 
       if (!result.ok) {

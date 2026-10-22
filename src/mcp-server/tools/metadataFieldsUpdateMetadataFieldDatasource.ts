@@ -39,7 +39,7 @@ Updates the values in a metadata field's datasource, including adding, modifying
       client,
       args.external_id,
       args.update_datasource_request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

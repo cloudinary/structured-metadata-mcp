@@ -31,7 +31,7 @@ Retrieves a list of all metadata rules in the cloud.`,
       const [result] = await metadataRulesListMetadataRules(
         client,
         args.request,
-        { fetchOptions: { signal: ctx.signal } },
+        { fetchOptions: { signal: ctx.mcpReq.signal } },
       ).$inspect();
 
       if (!result.ok) {
