@@ -36,7 +36,7 @@ Updates the properties and configuration of the specified metadata field.`,
       client,
       args.external_id,
       args.metadata_field,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {
