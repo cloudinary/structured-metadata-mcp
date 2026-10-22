@@ -37,7 +37,7 @@ Updates the properties and configuration of an existing metadata rule.`,
         client,
         args.external_id,
         args.metadata_rule_update,
-        { fetchOptions: { signal: ctx.signal } },
+        { fetchOptions: { signal: ctx.mcpReq.signal } },
       ).$inspect();
 
       if (!result.ok) {
