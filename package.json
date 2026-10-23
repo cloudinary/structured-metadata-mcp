@@ -1,6 +1,6 @@
 {
   "name": "@cloudinary/structured-metadata-mcp",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "author": "Cloudinary",
   "type": "module",
   "sideEffects": false,
