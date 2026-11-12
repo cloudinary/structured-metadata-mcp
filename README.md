@@ -1,5 +1,6 @@
 # Cloudinary Structured Metadata MCP Server
 
+<!-- mcp-name: com.cloudinary/structured-metadata-mcp -->
 
 <!-- Start Summary [summary] -->
 ## Summary
