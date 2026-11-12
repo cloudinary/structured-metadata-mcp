@@ -1,6 +1,8 @@
 {
   "name": "@cloudinary/structured-metadata-mcp",
   "version": "0.6.1",
+  "mcpName": "com.cloudinary/structured-metadata-mcp",
+  "homepage": "https://cloudinary.com/documentation/cloudinary_llm_mcp",
   "author": "Cloudinary",
   "type": "module",
   "sideEffects": false,
@@ -13,6 +15,7 @@
     "mcp": "bin/mcp-server.js"
   },
   "scripts": {
+    "prebuild": "bash scripts/sync-server-json.sh",
     "build": "bun i && bun src/mcp-server/build.mts && tsc",
     "mcpb:build": "bun i && bun src/mcp-server/build.mts --pack && tsc",
     "check": "npm run lint",
